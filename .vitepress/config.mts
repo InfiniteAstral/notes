@@ -1,5 +1,6 @@
 import { defineConfig } from 'vitepress'
 import mathjax3 from 'markdown-it-mathjax3';
+import AutoNav from "vite-plugin-vitepress-auto-nav";
 
 const customElements = [
   'mjx-container',
@@ -107,13 +108,19 @@ export default defineConfig({
       },
     },
   },
+  vite: {
+    plugins: [
+      AutoNav({
+        // Custom options
+      }),
+    ],
+  },
   themeConfig: {
     // https://vitepress.dev/reference/default-theme-config
     nav: [
       { text: 'Home', link: '/' },
       { text: 'Examples', link: '/markdown-examples' }
     ],
-
     sidebar: [
       {
         text: 'Examples',
@@ -123,7 +130,6 @@ export default defineConfig({
         ]
       }
     ],
-
     socialLinks: [
       { icon: 'github', link: 'https://github.com/vuejs/vitepress' }
     ]

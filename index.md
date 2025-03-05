@@ -13,6 +13,9 @@ hero:
   tagline: My great project tagline
   actions:
     - theme: brand
+      text: Data Structure
+      link: /Data%20Structure
+    - theme: alt
       text: Markdown Examples
       link: /markdown-examples
     - theme: alt
