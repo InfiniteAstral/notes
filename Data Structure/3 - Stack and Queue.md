@@ -97,17 +97,17 @@
 > 
 > &ensp;&ensp;&ensp;&ensp;**基本操作**：
 > 
-> &ensp;&ensp;&ensp;&ensp;&ensp;&ensp; $InitStack(\&S)$
+> &ensp;&ensp;&ensp;&ensp;&ensp;&ensp; $InitStack(\& S)$
 > 
 > &ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp; 操作结果：构造一个空栈 $S$ 。
 > 
-> &ensp;&ensp;&ensp;&ensp;&ensp;&ensp; $DestroyStack(\&S)$
+> &ensp;&ensp;&ensp;&ensp;&ensp;&ensp; $DestroyStack(\& S)$
 > 
 > &ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp; 初始条件：栈 $S$ 已存在。
 > 
 > &ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp; 操作结果：栈 $S$ 被销毁。
 > 
-> &ensp;&ensp;&ensp;&ensp;&ensp;&ensp; $ClearStack(\&S)$
+> &ensp;&ensp;&ensp;&ensp;&ensp;&ensp; $ClearStack(\& S)$
 > 
 > &ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp; 初始条件：栈 $S$ 已存在。
 > 
@@ -131,13 +131,13 @@
 > 
 > &ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp; 操作结果：返回 $S$ 的栈顶元素，不修改栈顶指针。
 > 
-> &ensp;&ensp;&ensp;&ensp;&ensp;&ensp; $Push(\&S, e)$
+> &ensp;&ensp;&ensp;&ensp;&ensp;&ensp; $Push(\& S, e)$
 > 
 > &ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp; 初始条件：栈 $S$ 已存在。
 > 
 > &ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp; 操作结果：插入元素 $e$ 为新的栈顶元素。
 > 
-> &ensp;&ensp;&ensp;&ensp;&ensp;&ensp; $Pop(\&S, \&e)$
+> &ensp;&ensp;&ensp;&ensp;&ensp;&ensp; $Pop(\& S, \& e)$
 > 
 > &ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp; 初始条件：栈 $S$ 已存在且非空。
 > 
@@ -148,6 +148,7 @@
 > &ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp; 初始条件：栈 $S$ 已存在且非空。
 > 
 > &ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp; 操作结果：从栈底到栈顶依次对 $S$ 的每个数据元素进行访问。
+> 
 > } **$ADT\ Stack$**
 
 和线性表类似，栈也有两种存储表示方法，分别称为**顺序栈**和**链栈**。
@@ -180,7 +181,6 @@ typedef struct {
 > 
 > 2. `stacksize` 指示栈可使用的最大容量，后面算法的初始化操作为顺序栈动态分配 `MAXSIZE` 大小的数组空间，将 `stacksize` 置为 `MAXSIZE` 。
 
-下图所示为顺序栈中数据元素和栈指针之间的对应关系。
 - 栈中元素和栈指针之间的关系：
   ![栈中元素和栈指针之间的关系](img/3/栈中元素和栈指针之间的关系.jpg "栈中元素和栈指针之间的关系")
 
@@ -189,3 +189,104 @@ typedef struct {
 <br>
 
 #### 初始化
+顺序栈的初始化操作就是为顺序栈**动态分配一个预定义大小的数组空间**。
+
+> ***算法：顺序栈的初始化***
+> **【算法步骤】**
+> 1. 为顺序栈动态分配一个最大容量为 `MAXSIZE` 的数组空间，使 `base` 指向这段空间的基地址，即栈底。
+> 2. 栈顶指针 `top` 初始为 `base` ，表示栈为空。
+> 3. `stacksize` 置为栈的最大容量 `MAXSIZE` 。
+> 
+> **【算法描述】**
+> ```c
+> Status InitStack(SqStack &S)
+> {   // 构造一个空栈 s
+>     S.base = new SElemType[MAXSIZE];    // 为顺序栈动态分配一个最大容量为 MAXSIZE 的数组空间
+>     if (!S.base)
+>         exit(OVERFLOW);                 // 存储分配失败
+>     S.top = S.base;                     // top 初始为 base，空栈
+>     S.stacksize = MAXSIZE;              // stacksize 置为栈的最大容量 MAXSIZE
+>     return OK;
+> }
+> ```
+
+<br>
+
+#### 入栈
+入栈操作是指**在栈顶插入一个新的元素**。
+
+> ***算法：顺序栈的入栈***
+> **【算法步骤】**
+> 1. 判断栈是否满，若满则返回 `ERROR` 。
+> 2. 将新元素压入栈顶，栈顶指针加 $1$。
+> 
+> 【算法描述】
+> ```c
+> Status Push(SqStack &S, SElemType e)
+> {   //插入元素 e 为新的栈顶元素
+>     if (S.top-S.base == s.stacksize)
+>         return ERROR;
+>     *(S.top++) = e;   // 栈满
+>     return OK;      // 元素 e 压入栈顶，栈顶指针加 1
+> }
+> ```
+
+<br>
+
+#### 出栈
+出栈操作是**将栈顶元素删除**。
+
+> ***算法：顺序栈的出栈***
+> **【算法步骤】**
+> 1. 判断栈是否空，若空则返回 `ERROR` 。
+> 2. 栈顶指针减 $1$ ，栈顶元素出栈。
+> 
+> **【算法描述】**
+> ```c
+> Status Pop(SqStack &S, SElemType &e)
+> {   // 删除 S 的栈顶元素，用 e 返回其值
+>     if(S.top == S.base)
+>         return ERROR;   // 栈空
+>     e = *(--S.top);     // 栈顶指针减 1，将栈顶元素赋给 e
+>     return OK;
+> }
+> ```
+
+<br>
+
+#### 取栈顶元素
+当栈非空时，此操作**返回当前栈顶元素的值**，栈顶指针保持不变。
+
+> ***算法：取顺序栈的栈顶元素***
+> **【算法描述】**
+> ```c
+> SElemType GetTop(SqStack S)
+> {   //返回 s 的栈顶元素，不修改栈顶指针
+>     if (S.top != S.base)        // 栈非空
+>         return *(S.top - 1);    // 返回栈顶元素的值，栈顶指针不变
+> }
+> ```
+
+由于顺序栈和顺序表一样，**受到最大空间容量的限制**，虽然可以在“满员”时重新分配空间扩大容量，但工作量较大，**应该尽量避免**。因此在应用程序无法预先估计栈可能达到的最大容量时，还是**应该使用链栈**。
+
+
+---
+
+
+### 3.3.3 链栈的表示和实现
+链栈是指采用链式存储结构实现的栈。通常链栈用单链表来表示，如图所示。
+
+- 链栈示意图：
+  ![链栈示意图](img/3/链栈示意图.jpg "链栈示意图")
+
+链栈的结点结构与单链表的结构相同，在此用 `StackNode` 表示，定义如下：
+
+```c
+//-----链栈的存储结构-----
+typedef struct StackNode {
+    ElemType data;
+    struct StackNode *next;
+} StackNode, * LinkStack;
+```
+
+由于栈的主要操作是在栈顶插入和删除，显然**以链表的头部作为栈顶是最方便的**，而且**没必要像单链表那样为了操作方便附加一个头结点**。
