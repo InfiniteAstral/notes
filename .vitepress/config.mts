@@ -2,6 +2,7 @@ import { defineConfig } from 'vitepress'
 import AutoNav from "vite-plugin-vitepress-auto-nav";
 
 import mathjax3 from 'markdown-it-mathjax3';
+import withMermaid from "vitepress-plugin-mermaid";
 
 const customElements = [
   'mjx-container',
@@ -97,11 +98,6 @@ const customElements = [
 export default defineConfig({
   title: "Notes",
   description: "Notes",
-  markdown: {
-    config: (md) => {
-      md.use(mathjax3);
-    },
-  },
   vue: {
     template: {
       compilerOptions: {
@@ -115,6 +111,18 @@ export default defineConfig({
         // Custom options
       }),
     ],
+  },
+  markdown: {
+    config: (md) => {
+      md.use(mathjax3);
+    },
+  },
+  mermaid: {
+    // refer https://mermaid.js.org/config/setup/modules/mermaidAPI.html#mermaidapi-configuration-defaults for options
+  },
+  // optionally set additional config for plugin itself with MermaidPluginConfig
+  mermaidPlugin: {
+    class: "mermaid my-class", // set additional css classes for parent container
   },
   themeConfig: {
     // https://vitepress.dev/reference/default-theme-config
