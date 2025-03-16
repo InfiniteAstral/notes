@@ -6,3 +6,6 @@ yarn.lock
 
 .vitepress/cache
 .vitepress/dist
+
+.vscode
+.idea

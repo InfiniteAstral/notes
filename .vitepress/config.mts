@@ -1,6 +1,7 @@
 import { defineConfig } from 'vitepress'
-import mathjax3 from 'markdown-it-mathjax3';
 import AutoNav from "vite-plugin-vitepress-auto-nav";
+
+import mathjax3 from 'markdown-it-mathjax3';
 
 const customElements = [
   'mjx-container',
@@ -119,19 +120,18 @@ export default defineConfig({
     // https://vitepress.dev/reference/default-theme-config
     nav: [
       { text: 'Home', link: '/' },
-      { text: 'Examples', link: '/markdown-examples' }
     ],
     sidebar: [
       {
-        text: 'Examples',
+        text: 'Notes',
         items: [
-          { text: 'Markdown Examples', link: '/markdown-examples' },
-          { text: 'Runtime API Examples', link: '/api-examples' }
+          { text: '计算机科学', link: '/计算机科学' },
+          { text: '大学物理', link: '/大学物理' }
         ]
       }
     ],
     socialLinks: [
-      { icon: 'github', link: 'https://github.com/vuejs/vitepress' }
+      { icon: 'github', link: 'https://github.com/zhxycn/Notes' }
     ]
   }
 })

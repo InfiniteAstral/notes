@@ -8,26 +8,12 @@ head:
       href: https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.5.1/katex.min.css
 
 hero:
-  name: "Notes"
-  text: "Notes"
-  tagline: My great project tagline
+  name: "笔记"
   actions:
     - theme: brand
-      text: Data Structure
-      link: /Data%20Structure
+      text: 计算机科学
+      link: /计算机科学
     - theme: alt
-      text: Markdown Examples
-      link: /markdown-examples
-    - theme: alt
-      text: API Examples
-      link: /api-examples
-
-features:
-  - title: Feature A
-    details: Lorem ipsum dolor sit amet, consectetur adipiscing elit
-  - title: Feature B
-    details: Lorem ipsum dolor sit amet, consectetur adipiscing elit
-  - title: Feature C
-    details: Lorem ipsum dolor sit amet, consectetur adipiscing elit
+      text: 大学物理
+      link: /大学物理
 ---
-
