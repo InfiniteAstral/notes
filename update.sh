@@ -29,14 +29,20 @@ else
   echo "依赖已是最新版本，跳过安装"
 fi
 
-rm -rf public
-echo "已删除 public 目录"
+rm -rf .vitepress/dist
+echo "已删除 .vitepress/dist 目录"
 
 npm run build
 echo "构建完成"
 
 npm cache clean --force
 echo "已清理 Node 缓存"
+
+rm -rf .vitepress/dist
+echo "已删除 .vitepress/cache 目录"
+
+rm -rf node_modules
+echo "已删除 node_modules 目录"
 
 rm -rf package-lock.json
 echo "已删除 package-lock.json"
