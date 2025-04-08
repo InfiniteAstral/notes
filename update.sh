@@ -38,7 +38,7 @@ echo "构建完成"
 npm cache clean --force
 echo "已清理 Node 缓存"
 
-rm -rf .vitepress/dist
+rm -rf .vitepress/cache
 echo "已删除 .vitepress/cache 目录"
 
 rm -rf node_modules
