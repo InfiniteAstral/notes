@@ -14,6 +14,6 @@ hero:
       text: 计算机科学
       link: /计算机科学
     - theme: alt
-      text: 大学物理
-      link: /大学物理
+      text: 物理
+      link: /物理
 ---
