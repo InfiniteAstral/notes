@@ -26,10 +26,10 @@ jobs:
           username: ${{ secrets.SERVER_USERNAME }}
           password: ${{ secrets.SERVER_PASSWORD }}
           port: 22
-          source: ".vitepress/dist/*"
+          source: ".vitepress/dist/"
           target: "~/deploy_temp"
           rm: true
-          strip_components: 1
+          strip_components: 2
       - name: Deploy
         uses: appleboy/ssh-action@master
         with:
@@ -39,5 +39,5 @@ jobs:
           port: 22
           script: |
             sudo rm -rf ${{ secrets.SERVER_DEPLOY_PATH }}/*
-            sudo cp -r ~/deploy_temp/* ${{ secrets.SERVER_DEPLOY_PATH }}/
+            sudo mv ~/deploy_temp/* ${{ secrets.SERVER_DEPLOY_PATH }}/
             rm -rf ~/deploy_temp
