@@ -134,12 +134,12 @@ export default defineConfig({
         text: 'Notes',
         items: [
           { text: '计算机科学', link: '/计算机科学' },
-          { text: '大学物理', link: '/大学物理' }
+          { text: '物理', link: '/物理' }
         ]
       }
     ],
     socialLinks: [
-      { icon: 'github', link: 'https://github.com/zhxycn/Notes' }
+      { icon: 'github', link: 'https://github.com/InfiniteAstral/Notes' }
     ]
   }
 })
