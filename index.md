@@ -10,7 +10,10 @@ head:
 hero:
   name: "笔记"
   actions:
-    - theme: brand
+    - theme: alt
+      text: 数学
+      link: /数学
+    - theme: alt
       text: 计算机科学
       link: /计算机科学
     - theme: alt
