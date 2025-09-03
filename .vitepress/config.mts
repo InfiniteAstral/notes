@@ -1,8 +1,8 @@
-import { defineConfig } from 'vitepress'
+import { defineConfig } from 'vitepress';
 import AutoNav from "vite-plugin-vitepress-auto-nav";
 
 import mathjax3 from 'markdown-it-mathjax3';
-import withMermaid from "vitepress-plugin-mermaid";
+import { withMermaid } from "vitepress-plugin-mermaid";
 
 const customElements = [
   'mjx-container',
@@ -33,10 +33,6 @@ const customElements = [
   'mstack',
   'mlongdiv',
   'msline',
-  'mstack',
-  'mspace',
-  'msqrt',
-  'msrow',
   'mstack',
   'mstack',
   'mstyle',
@@ -108,7 +104,12 @@ export default defineConfig({
   vite: {
     plugins: [
       AutoNav({
-        // Custom options
+        compareFn: (a, b) => {
+          const getTitle = (item) =>
+            item.frontmatter?.h1 || item.options?.title || item.name;
+          return getTitle(a).localeCompare(getTitle(b), 'zh');
+        },
+        useArticleTitle: true,
       }),
     ],
   },
@@ -142,4 +143,4 @@ export default defineConfig({
       { icon: 'github', link: 'https://github.com/InfiniteAstral/Notes' }
     ]
   }
-})
+});
