@@ -2,7 +2,7 @@ import { defineConfig } from 'vitepress';
 import AutoNav from "vite-plugin-vitepress-auto-nav";
 
 import mathjax3 from 'markdown-it-mathjax3';
-import { withMermaid } from "vitepress-plugin-mermaid";
+import { MermaidMarkdown, MermaidPlugin } from "vitepress-plugin-mermaid";
 
 const customElements = [
   'mjx-container',
@@ -103,6 +103,7 @@ export default defineConfig({
   },
   vite: {
     plugins: [
+      MermaidPlugin(),
       AutoNav({
         compareFn: (a, b) => {
           const getTitle = (item) =>
@@ -112,10 +113,17 @@ export default defineConfig({
         useArticleTitle: true,
       }),
     ],
+    optimizeDeps: {
+      include: ["mermaid"],
+    },
+    ssr: {
+      noExternal: ["mermaid"],
+    },
   },
   markdown: {
     config: (md) => {
       md.use(mathjax3);
+      md.use(MermaidMarkdown);
     },
   },
   mermaid: {
