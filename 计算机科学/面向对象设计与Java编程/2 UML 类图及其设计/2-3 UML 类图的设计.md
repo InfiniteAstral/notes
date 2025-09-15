@@ -10,3 +10,15 @@
 4. **设计类提供哪些操作**
 5. **绘制类图**
 
+类图设计完成后，可以运用 UML 建模工具绘制响应的类图，应用较广泛的 UML 建模工具有 StarUML、ProcessOn、Violet 和 Visio 等。
+
+|                                      工具                                       | 描述                                                                                                           |
+| :-----------------------------------------------------------------------------: | -------------------------------------------------------------------------------------------------------------- |
+|                         [StarUML](https://staruml.io/)                          | StarUML（简称 SU）是一种生成类图和其他类型的 UML 图表的工具，其发展快、灵活、可扩展性强                        |
+|                     [ProcessOn](https://www.processon.io/)                      | ProcessOn 是一款全新的在线 UML 工具，支持主流 UML 图的绘制                                                     |
+|          [Violet](https://github.com/violetumleditor/violetumleditor)           | Violet 是一种轻量级的 UML 建模工具，可快速绘制类图、对象图、时序图和状态图，易学易用、跨平台支持中文且源码开放 |
+| [Visio](https://www.microsoft.com/zh-cn/microsoft-365/visio/flowchart-software) | Visio 中的“UML 模型图”解决方案为创建复杂软件系统的面向对象的模型提供全面的支持                                 |
+
+## 2.3.2 实际系统的建模
+
+由于这是一个十分冗长且复杂的工作，篇幅有限，所以恕不在此详细举例并讲解。

@@ -93,7 +93,7 @@ Window ..> WindowClosingEvent
     +deposit(amount: double)
     +withdraw(amount: double)
   }
-  Client "1" --> "1" BankAccount : -account
+  Client "1" --> BankAccount : -account
   ```
 
 #### 双向关联关系
