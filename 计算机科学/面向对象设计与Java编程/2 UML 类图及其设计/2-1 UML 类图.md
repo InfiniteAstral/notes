@@ -2,7 +2,7 @@
 
 ## 2.1.1 UML 类图介绍
 
-**类图（Class Diagram）** 是 **UML（统一建模语言）**中的一种**静态结构图**，他用于描述系统的静态结构。
+**类图（Class Diagram）** 是 **UML（统一建模语言）**中的一种**静态结构图**，用于描述系统的静态结构。
 
 ## 2.1.2 UML 类的表示
 
@@ -16,10 +16,10 @@
 > 其中，`+`、`-` 表示**访问权限**，除此之外，还有 `#`、`~`。
 > | 符号 | 描述 |
 > | :--: | :-----------------------: |
-> | `+` | 代表 public |
-> | `#` | 代表 protected |
-> | `-` | 代表 private |
-> | `~` | 代表 package，即 friendly |
+> | `+` | 代表 **public** |
+> | `#` | 代表 **protected** |
+> | `-` | 代表 **private** |
+> | `~` | 代表 **package**，即 friendly |
 
 ## 2.1.3 类之间的关联关系
 
@@ -29,6 +29,7 @@
 
 ```mermaid
 classDiagram
+direction LR
 Window ..> WindowClosingEvent
 ```
 
@@ -46,41 +47,54 @@ Window ..> WindowClosingEvent
 
 关联关系两端所附带的数字或者数字范围称为**多重性**，用于描述一个类的对象能够与另一个类的对象形成多少个**实例关系**。
 
+**类与类之间常用的关联数量表示及其含义有以下几种**：
+
+1. **具体数字**：比如下图 [单向关联关系 II](#单向关联关系II) 中的 `1`。
+2. **`*` 或 `0..*`**：表示 0 到任意多个。
+3. **`0..1`**：表示 0 个或 1 个。
+4. **`1..*`**：表示 1 到任意多个。
+
 #### 单向关联关系
 
 类 A **拥有**对类 B 对象的引用，但类 B **没有**对类 A 对象的引用。
 
-```mermaid
-classDiagram
-class Client {
-  -name: String
-  +addBankAccount(account: BankAccount)
-  +getBankAccount(index: int) BankAccount
-  +getNumberOfBankAccounts() int
-}
-class BankAccount {
-  -balance: double
-  +deposit(amount: double)
-  +withdraw(amount: double)
-}
-Client --> BankAccount
-```
+- 单向关联关系 I
 
-```mermaid
-classDiagram
-class Client {
-  -name: String
-  +addBankAccount(account: BankAccount)
-  +getBankAccount(index: int) BankAccount
-  +getNumberOfBankAccounts() int
-}
-class BankAccount {
-  -balance: double
-  +deposit(amount: double)
-  +withdraw(amount: double)
-}
-Client "1" --> "-account 1" BankAccount
-```
+  ```mermaid
+  classDiagram
+  direction LR
+  class Client {
+    -name: String
+    +addBankAccount(account: BankAccount)
+    +getBankAccount(index: int) BankAccount
+    +getNumberOfBankAccounts() int
+  }
+  class BankAccount {
+    -balance: double
+    +deposit(amount: double)
+    +withdraw(amount: double)
+  }
+  Client --> BankAccount
+  ```
+
+- <span id="单向关联关系II">单向关联关系 II</span>
+
+  ```mermaid
+  classDiagram
+  direction LR
+  class Client {
+    -name: String
+    +addBankAccount(account: BankAccount)
+    +getBankAccount(index: int) BankAccount
+    +getNumberOfBankAccounts() int
+  }
+  class BankAccount {
+    -balance: double
+    +deposit(amount: double)
+    +withdraw(amount: double)
+  }
+  Client "1" --> "1" BankAccount : -account
+  ```
 
 #### 双向关联关系
 
@@ -88,12 +102,13 @@ Client "1" --> "-account 1" BankAccount
 
 ```mermaid
 classDiagram
-Student "* -students" -- "6 -courses" Course
+direction LR
+Student "*" -- "6" Course : -students / -courses
 ```
 
--  一对多关联关系
+- 一对多关联关系
 
--  多对多关联关系
+- 多对多关联关系
 
 ### 聚合关系
 
@@ -103,6 +118,7 @@ Student "* -students" -- "6 -courses" Course
 
 ```mermaid
 classDiagram
+direction LR
 Car o-- Wheel
 ```
 
