@@ -91,9 +91,9 @@ classDiagram
 Student "* -students" -- "6 -courses" Course
 ```
 
-##### 一对多关联关系
+-  一对多关联关系
 
-##### 多对多关联关系
+-  多对多关联关系
 
 ### 聚合关系
 
