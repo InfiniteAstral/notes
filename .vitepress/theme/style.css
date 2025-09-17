@@ -1,0 +1,4 @@
+:root {
+  --vp-font-family-base: "Noto Sans SC", "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", "WenQuanYi Micro Hei", sans-serif;
+  --vp-font-family-mono: "JetBrains Mono", "Maple Mono NF CN", "Fira Code", "SF Mono", "Monaco", "Inconsolata", "Roboto Mono", "Source Code Pro", "Consolas", "Courier New", ui-monospace, "Menlo", "Liberation Mono", "Courier New", monospace;
+}
