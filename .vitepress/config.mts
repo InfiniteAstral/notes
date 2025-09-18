@@ -94,6 +94,7 @@ const customElements = [
 export default defineConfig({
   title: "Notes",
   description: "Notes",
+  head: [['link', { rel: 'icon', href: 'https://static.owo.cab/favicon.ico' }]],
   vue: {
     template: {
       compilerOptions: {
