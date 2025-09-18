@@ -5,3 +5,25 @@
   --vp-font-family-base: "Noto Sans SC", "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", "WenQuanYi Micro Hei", sans-serif;
   --vp-font-family-mono: "JetBrains Mono", "Maple Mono NF CN", "Fira Code", "SF Mono", "Monaco", "Inconsolata", "Roboto Mono", "Source Code Pro", "Consolas", "Courier New", ui-monospace, "Menlo", "Liberation Mono", "Courier New", monospace;
 }
+
+html {
+  scroll-behavior: smooth;
+}
+
+.VPNavBarTitle>.title {
+  font-size: 1.2em;
+  color: var(--vp-c-brand-1);
+  transition: all 0.1s ease-in-out;
+
+  &:hover {
+    color: var(--vp-c-brand-4);
+  }
+}
+
+.heading>.name {
+  max-width: 100%;
+}
+
+.menu-text {
+  font-size: medium;
+}
