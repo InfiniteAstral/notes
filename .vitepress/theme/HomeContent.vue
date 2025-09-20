@@ -1,3 +1,20 @@
+<script setup>
+import { ref, onMounted } from 'vue'
+
+const contributorsSvg = ref('')
+
+onMounted(async () => {
+  try {
+    const response = await fetch('https://api.owo.cab/gh-contributors?owner=InfiniteAstral&repo=notes')
+    if (response.ok) {
+      contributorsSvg.value = await response.text()
+    }
+  } catch (error) {
+    // Handle error if needed
+  }
+})
+</script>
+
 <template>
   <div class="home-content">
     <!-- <h2>欢迎来到拾星絮语的笔记小站</h2> -->
@@ -12,6 +29,10 @@
     </p>
     <p>也愿这个小站能够不断成长，内容日益丰明，成为一个真正有价值的知识宝库。</p>
   </div>
+  <div class="contributors-container">
+    <h2>本站的贡献者</h2>
+    <div v-html="contributorsSvg" class="contributors-svg"></div>
+  </div>
   <div class="category-container">
     <h2>学科分类</h2>
   </div>
@@ -19,7 +40,8 @@
 
 <style scoped>
 .home-content,
-.category-container {
+.category-container,
+.contributors-container {
   max-width: 960px;
   margin: 0px auto;
   padding: 0 32px 32px;
@@ -28,6 +50,31 @@
   .important-para {
     color: var(--vp-c-text-1);
   }
+}
+
+.category-container {
+  padding: 0;
+}
+
+.contributors-container {
+  background-color: var(--vp-c-bg);
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+
+  h2 {
+    margin: 0;
+  }
+
+  .contributors-svg {
+    display: flex;
+    min-height: 150px;
+    justify-content: center;
+  }
+}
+
+.contributors-container :deep(rect[fill="white"]) {
+  fill: var(--vp-c-bg);
 }
 
 h2 {
