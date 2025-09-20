@@ -10,9 +10,16 @@ onMounted(() => {
       entries.forEach(async (entry) => {
         if (entry.isIntersecting) {
           try {
-            const response = await fetch('https://api.owo.cab/gh-contributors?owner=InfiniteAstral&repo=notes')
-            if (response.ok) {
-              contributorsSvg.value = await response.text()
+            const cachedSvg = sessionStorage.getItem('contributorsSvg')
+            if (cachedSvg) {
+              contributorsSvg.value = cachedSvg
+            } else {
+              const response = await fetch('https://api.owo.cab/gh-contributors?owner=InfiniteAstral&repo=notes')
+              if (response.ok) {
+                const svg = await response.text()
+                contributorsSvg.value = svg
+                sessionStorage.setItem('contributorsSvg', svg)
+              }
             }
           } catch (error) {
             // Handle error if needed
