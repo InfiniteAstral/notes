@@ -2,8 +2,13 @@
 import { ref, onMounted } from 'vue'
 
 const contributorsSvg = ref('')
+const contributorsContainer = ref(null)
 
-onMounted(async () => {
+onMounted(() => {
+  const observer = new IntersectionObserver(
+    (entries) => {
+      entries.forEach(async (entry) => {
+        if (entry.isIntersecting) {
   try {
     const response = await fetch('https://api.owo.cab/gh-contributors?owner=InfiniteAstral&repo=notes')
     if (response.ok) {
@@ -11,6 +16,19 @@ onMounted(async () => {
     }
   } catch (error) {
     // Handle error if needed
+  }
+          observer.unobserve(entry.target)
+        }
+      })
+    },
+    {
+      rootMargin: '0px',
+      threshold: 0.1
+    }
+  )
+
+  if (contributorsContainer.value) {
+    observer.observe(contributorsContainer.value)
   }
 })
 </script>
@@ -29,7 +47,7 @@ onMounted(async () => {
     </p>
     <p>也愿这个小站能够不断成长，内容日益丰明，成为一个真正有价值的知识宝库。</p>
   </div>
-  <div class="contributors-container">
+  <div ref="contributorsContainer" class="contributors-container">
     <h2>本站的贡献者</h2>
     <div v-html="contributorsSvg" class="contributors-svg"></div>
   </div>
