@@ -27,3 +27,23 @@ html {
 .menu-text {
   font-size: medium;
 }
+
+::view-transition-old(*) {
+  animation: none;
+}
+::view-transition-new(*) {
+  animation: globalDark .2s ease-in;
+}
+
+@keyframes globalDark {
+  from {
+    clip-path: circle(0% at var(--darkX) var(--darkY));
+  }
+  to {
+    clip-path: circle(120% at var(--darkX) var(--darkY));
+  }
+}
+
+.dark img {
+    filter: brightness(0.8);
+}
