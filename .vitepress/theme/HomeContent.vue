@@ -9,14 +9,14 @@ onMounted(() => {
     (entries) => {
       entries.forEach(async (entry) => {
         if (entry.isIntersecting) {
-  try {
-    const response = await fetch('https://api.owo.cab/gh-contributors?owner=InfiniteAstral&repo=notes')
-    if (response.ok) {
-      contributorsSvg.value = await response.text()
-    }
-  } catch (error) {
-    // Handle error if needed
-  }
+          try {
+            const response = await fetch('https://api.owo.cab/gh-contributors?owner=InfiniteAstral&repo=notes')
+            if (response.ok) {
+              contributorsSvg.value = await response.text()
+            }
+          } catch (error) {
+            // Handle error if needed
+          }
           observer.unobserve(entry.target)
         }
       })
@@ -49,7 +49,15 @@ onMounted(() => {
   </div>
   <div ref="contributorsContainer" class="contributors-container">
     <h2>本站的贡献者</h2>
-    <div v-html="contributorsSvg" class="contributors-svg"></div>
+    <div v-if="contributorsSvg" v-html="contributorsSvg" class="contributors-svg"></div>
+    <div v-else class="skeleton-loader">
+      <div class="skeleton-avatars">
+        <div v-for="n in 2" :key="n" class="skeleton-avatar"></div>
+      </div>
+      <div class="skeleton-names">
+        <div v-for="n in 2" :key="n" class="skeleton-name"></div>
+      </div>
+    </div>
   </div>
   <div class="category-container">
     <h2>学科分类</h2>
@@ -88,7 +96,66 @@ onMounted(() => {
     display: flex;
     min-height: 150px;
     justify-content: center;
+    flex-wrap: wrap;
   }
+}
+
+.skeleton-loader {
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  min-height: 150px;
+  gap: 5px;
+}
+
+.skeleton-avatars {
+  display: flex;
+  flex-direction: row;
+  gap: 32px;
+}
+
+.skeleton-avatar {
+  width: 64px;
+  height: 64px;
+  border-radius: 50%;
+  background-color: var(--vp-c-bg-soft);
+  animation: pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+}
+
+.skeleton-names {
+  display: flex;
+  flex-direction: row;
+  gap: 48px;
+}
+
+.skeleton-name {
+  width: 48px;
+  height: 10px;
+  border-radius: 2px;
+  background-color: var(--vp-c-bg-soft);
+  position: relative;
+  overflow: hidden;
+  animation: pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+}
+
+@keyframes pulse {
+  0%,
+  100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.5;
+  }
+}
+
+.loading-placeholder {
+  display: flex;
+  min-height: 150px;
+  justify-content: center;
+  align-items: center;
+  color: var(--vp-c-text-2);
 }
 
 .contributors-container :deep(rect[fill="white"]) {
