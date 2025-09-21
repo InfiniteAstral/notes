@@ -89,6 +89,8 @@ const customElements = [
   'annotation-xml',
 ];
 
+const currentYear = new Date().getFullYear();
+
 // https://vitepress.dev/reference/site-config
 export default defineConfig({
   title: "拾星絮语『笔记小站』",
@@ -153,6 +155,9 @@ export default defineConfig({
     ],
     socialLinks: [
       { icon: 'github', link: 'https://github.com/InfiniteAstral/notes' }
-    ]
+    ],
+    footer: {
+      copyright: `© ${currentYear} InfiniteAstral · <a href="https://github.com/InfiniteAstral/notes" target="_blank" rel="noopener noreferrer">GitHub</a>`
+    }
   }
 });
