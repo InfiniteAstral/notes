@@ -1,7 +1,7 @@
 # 3.2 Java 类与对象
 
 ::: tip
-本页除目录以外的内容由 Gemini 2.5 Pro 生成。
+本页除目录以外的内容由 Gemini 2.5 Pro 生成，由 [TouHikari](https://github.com/TouHikari/) 审阅并修改。
 :::
 
 ## 3.2.1 类的定义

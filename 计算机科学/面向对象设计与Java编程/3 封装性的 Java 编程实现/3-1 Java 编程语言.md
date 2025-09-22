@@ -1,7 +1,7 @@
 # 3.1 Java 编程语言
 
 ::: tip
-本页除目录以外的内容由 Gemini 2.5 Pro 生成。
+本页除目录以外的内容由 Gemini 2.5 Pro 生成，由 [TouHikari](https://github.com/TouHikari/) 审阅并修改。
 :::
 
 ## 3.1.1 Java 概述
