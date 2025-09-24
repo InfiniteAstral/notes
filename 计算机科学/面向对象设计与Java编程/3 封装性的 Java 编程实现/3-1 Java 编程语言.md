@@ -131,6 +131,10 @@ javadoc -d doc HelloWorld.java
 `-d doc` 选项告诉 `javadoc` 将生成的 HTML 文档放在一个名为 `doc` 的文件夹中。
 :::
 
+::: tip 关于 `javadoc` 的编写规范
+请参阅本章 [3.6 Javadoc 编写规范](./3-6%20Javadoc%20编写规范)。
+:::
+
 执行完毕后，会在 `doc` 文件夹中看到一系列 HTML 文件。用浏览器打开其中的 `index.html` 文件，就能看到为代码生成的专业 API 文档了。
 
 ### 环境变量
