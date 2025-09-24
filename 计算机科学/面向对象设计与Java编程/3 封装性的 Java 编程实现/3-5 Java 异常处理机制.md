@@ -1,25 +1,8 @@
 # 3.5 Java 异常处理机制
 
 ::: tip
-本页除目录和下图以外的内容由 Gemini 2.5 Pro 生成，由 [TouHikari](https://github.com/TouHikari/) 审阅并修改。
+本页除目录和 Mermaid 图以外的内容由 Gemini 2.5 Pro 生成，由 [TouHikari](https://github.com/TouHikari/) 审阅并修改。
 :::
-
-```mermaid
----
-title: 异常类层次结构
----
-flowchart BT
-    NumberFormatException --> RuntimeException
-    NullPointException --> RuntimeException
-    A@{ shape: procs, label: "ClassNotFoundException"} --> RuntimeException
-
-    IOException --->|非运行时异常|Exception
-    B@{ shape: procs, label: "SQLException"} --->|非运行时异常|Exception
-    RuntimeException --->|运行时异常|Exception
-
-    Error --> Throwable
-    Exception --> Throwable
-```
 
 ## 3.5.1 Java 异常处理机制的引入
 
@@ -29,7 +12,7 @@ flowchart BT
 
 **什么是异常？**
 
-在 Java 中，异常（Exception）是在程序执行期间发生的、扰乱了程序正常执行流程的事件。当一个方法中发生错误时，该方法会创建一个对象并将其交给运行时系统。这个对象被称为“异常对象”，它包含了关于错误的信息，包括错误的类型和程序在发生错误时的状态。在方法中创建异常对象并将其交给运行时系统的过程称为“抛出异常”（throwing an exception）。
+**在 Java 中，异常（Exception）是在程序执行期间发生的、扰乱了程序正常执行流程的事件**。当一个方法中发生错误时，该方法会创建一个对象并将其交给运行时系统。这个对象被称为“异常对象”，它**包含了关于错误的信息，包括错误的类型和程序在发生错误时的状态**。在方法中创建异常对象并将其交给运行时系统的过程称为“抛出异常”（throwing an exception）。
 
 **为什么需要异常处理？**
 
@@ -235,19 +218,30 @@ public class FileReaderExample {
 
 **异常类继承体系图**
 
-```
-          java.lang.Throwable
-              /       \
-             /         \
-      java.lang.Error   java.lang.Exception
-                           /       \
-                          /         \
-      (各种受检异常)   java.lang.RuntimeException
-      IOException             /       \
-      SQLException           /         \
-      ...               NullPointerException
-                        ArrayIndexOutOfBoundsException
-                        ...
+```mermaid
+---
+title: 异常类层次结构
+---
+flowchart RL
+    subgraph 非受检异常
+    NumberFormatException --> RuntimeException
+    NullPointException --> RuntimeException
+    A@{ shape: procs, label: "ClassNotFoundException"} --> RuntimeException
+    end
+
+    subgraph 受检异常
+    IOException
+    ClassNotFoundException
+    B
+    end
+
+    IOException --->|非运行时异常|Exception
+    ClassNotFoundException --->|非运行时异常|Exception
+    B@{ shape: procs, label: "SQLException"} --->|非运行时异常|Exception
+    RuntimeException --->|运行时异常|Exception
+
+    Error --> Throwable
+    Exception --> Throwable
 ```
 
 ### `throws` 关键字
