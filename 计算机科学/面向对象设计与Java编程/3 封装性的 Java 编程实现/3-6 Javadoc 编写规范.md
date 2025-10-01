@@ -1,9 +1,5 @@
 # 3.6 Javadoc 编写规范
 
-::: tip
-本页除目录以外的内容由 Gemini 2.5 Pro 生成，由 [TouHikari](https://github.com/TouHikari/) 审阅并修改。
-:::
-
 ## 3.6.1 Javadoc 编写规范
 
 Javadoc 是 Java 中一种用于生成 API 文档的工具。通过在源代码中遵循特定的注释格式，开发者可以轻松地生成专业、规范的 API 文档。

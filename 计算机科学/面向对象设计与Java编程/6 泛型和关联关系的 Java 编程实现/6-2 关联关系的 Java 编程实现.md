@@ -1,9 +1,5 @@
 # 6.2 关联关系的 Java 编程实现
 
-::: tip
-本页除目录和 Mermaid 图以外的内容由 Gemini 2.5 Pro 生成，由 [TouHikari](https://github.com/TouHikari/) 审阅并修改。
-:::
-
 ## 6.2.1 关联关系
 
 ### 关联关系的概念

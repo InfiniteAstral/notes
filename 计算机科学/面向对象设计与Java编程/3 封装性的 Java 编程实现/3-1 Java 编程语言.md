@@ -1,9 +1,5 @@
 # 3.1 Java 编程语言
 
-::: tip
-本页除目录以外的内容由 Gemini 2.5 Pro 生成，由 [TouHikari](https://github.com/TouHikari/) 审阅并修改。
-:::
-
 ## 3.1.1 Java 概述
 
 Java 是由 Sun Microsystems 公司于 1995 年 5 月推出的面向对象程序设计语言和 Java 平台的总称。它由詹姆斯·高斯林（James Gosling）和他的同事们共同研发，最初被命名为 Oak，后来改名为 Java。如今，Java 已经成为全球最受欢迎和最具影响力的编程语言之一。

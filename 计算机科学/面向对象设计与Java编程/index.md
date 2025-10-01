@@ -1,5 +1,9 @@
 # 《面向对象设计与 Java 编程》
 
+::: tip
+本学科文章部分内容由 Gemini 2.5 Pro 和 Claude 4 Sonnet 生成，由 [<img src="https://github.com/TouHikari.png" alt="TouHikari" style="display: inline-block; width: 20px; height: 20px; border-radius: 100%; vertical-align: text-bottom;"> TouHikari](https://github.com/TouHikari/) 审阅并修改。
+:::
+
 ## 目录
 
 ### 第一单元 面向对象基础和类图设计
