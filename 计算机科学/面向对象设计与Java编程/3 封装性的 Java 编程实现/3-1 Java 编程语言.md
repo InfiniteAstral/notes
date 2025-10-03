@@ -100,17 +100,20 @@ Hello, World!
 让我们为 `HelloWorld.java` 添加一些文档注释：
 
 ```java
+// [!code ++:5]
 /**
  * 这是一个简单的 HelloWorld 程序，用于演示 javadoc 的使用。
  * @author Gemini
  * @version 1.0
  */
 public class HelloWorld {
+    // [!code ++:4]
     /**
      * 程序的入口点。
      * @param args 命令行参数，本程序未使用。
      */
     public static void main(String[] args) {
+        // [!code ++:1]
         // 打印 "Hello, World!" 到标准输出。
         System.out.println("Hello, World!");
     }

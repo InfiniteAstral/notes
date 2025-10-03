@@ -293,10 +293,12 @@ public class UtilManager {
 ```java
 package com.example.main;
 
+// [!code error:1]
 import com.example.util.Helper;  // 编译错误！不能导入默认访问权限的类
 
 public class Application {
     public static void main(String[] args) {
+        // [!code error:1]
         // Helper helper = new Helper();  // 编译错误！不能访问
     }
 }
@@ -328,10 +330,12 @@ class StudentHelper {   // 默认访问权限的辅助类，可以在同一文�
 
 ```java
 // 文件：MyFile.java
+// [!code error:3]
 public class Student {  // 错误！public 类名与文件名不一致
     // ...
 }
 
+// [!code error:3]
 public class Teacher {  // 错误！一个文件中不能有多个 public 类
     // ...
 }
@@ -391,6 +395,7 @@ class TestAccount {
     public static void main(String[] args) {
         BankAccount account = new BankAccount("123456", 1000.0);
 
+        // [!code error:2]
         // account.balance = 2000;  // 编译错误！不能直接访问私有属性
         // account.isValidAmount(100);  // 编译错误！不能访问私有方法
 
@@ -422,7 +427,7 @@ class TestAccount {
 package com.example.model;
 
 public class Person {
-    String name;        // 默认访问权限
+    String name;       // 默认访问权限
     int age;           // 默认访问权限
 
     void displayInfo() {  // 默认访问权限
@@ -436,7 +441,7 @@ package com.example.model;
 public class PersonManager {
     public void managePerson() {
         Person person = new Person();
-        person.name = "李四";      // 同一包，可以访问
+        person.name = "李四";     // 同一包，可以访问
         person.age = 25;          // 同一包，可以访问
         person.displayInfo();     // 同一包，可以访问
     }
@@ -450,7 +455,8 @@ import com.example.model.Person;
 public class TestPerson {
     public static void main(String[] args) {
         Person person = new Person();
-        // person.name = "王五";     // 编译错误！不同包，不能访问
+        // [!code error:2]
+        // person.name = "王五";    // 编译错误！不同包，不能访问
         // person.displayInfo();    // 编译错误！不同包，不能访问
     }
 }
@@ -521,6 +527,7 @@ import com.example.base.Animal;
 
 public class AnimalCare {
     public void careForAnimal(Animal animal) {
+        // [!code error:2]
         // animal.species = "Unknown";  // 编译错误！不是子类关系，不能访问 protected 成员
         // animal.makeSound();          // 编译错误！
     }
@@ -619,6 +626,7 @@ class Child extends Parent {
     void method2() { }
 
     // 错误：不能降低访问权限
+    // [!code error:1]
     // private void method1() { }  // 编译错误！
 }
 ```

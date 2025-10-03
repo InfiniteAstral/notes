@@ -419,6 +419,7 @@ public class Calculator {
     }
 
     // 这是错误的，不能构成重载，因为只有返回值类型不同
+    // [!code error:5]
     /*
     public double add(int a, int b) {
         return (double)(a + b);
@@ -517,6 +518,7 @@ public class Car {
     // 类方法
     public static void showTotalCars() {
         // 类方法不能访问实例变量 brand
+        // [!code error:1]
         // System.out.println(brand); // 这行会编译错误！
 
         System.out.println("汽车总数是：" + numberOfCars);
@@ -581,6 +583,7 @@ public class ConstantExample {
 
     public void changeConstant() {
         // 下面这行代码会导致编译错误
+        // [!code error:1]
         // CONSTANT_A = 20;
     }
 }
@@ -601,6 +604,7 @@ public class Parent {
 
 public class Child extends Parent {
     // 下面的方法会导致编译错误，因为 final 方法不能被重写
+    // [!code error:6]
     /*
     @Override
     public void showMessage() {
@@ -622,6 +626,7 @@ public final class FinalClass {
 }
 
 // 下面的类定义会导致编译错误，因为 FinalClass 不能被继承
+// [!code error:5]
 /*
 public class SubClass extends FinalClass {
     // ...

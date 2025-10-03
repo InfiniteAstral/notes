@@ -232,6 +232,7 @@ for (String name : names) {
 // Person.java
 public class Person {
     private String name;
+    // [!code highlight:1]
     private IDCard card; // 持有 IDCard 的引用
 
     public Person(String name) {
@@ -250,6 +251,7 @@ public class Person {
 // IDCard.java
 public class IDCard {
     private String cardNumber;
+    // [!code highlight:1]
     private Person person; // 持有 Person 的引用
 
     public IDCard(String cardNumber) {
@@ -271,6 +273,7 @@ public class Main {
         Person person = new Person("张三");
         IDCard card = new IDCard("123456789012345678");
 
+        // [!code highlight:3]
         // 建立双向关联
         person.setCard(card);
         card.setPerson(person);
@@ -296,6 +299,7 @@ import java.util.List;
 // Clazz.java (一的一方)
 public class Clazz {
     private String name;
+    // [!code highlight:1]
     private List<Student> students = new ArrayList<>(); // 持有多个 Student 的引用
 
     public Clazz(String name) {
@@ -314,6 +318,7 @@ public class Clazz {
 // Student.java (多的一方)
 public class Student {
     private String name;
+    // [!code highlight:1]
     private Clazz clazz; // 持有 Clazz 的引用
 
     public Student(String name, Clazz clazz) {
@@ -335,9 +340,11 @@ public class Main {
     public static void main(String[] args) {
         Clazz clazz = new Clazz("计算机一班");
 
+        // [!code highlight:2]
         Student student1 = new Student("李四", clazz);
         Student student2 = new Student("王五", clazz);
 
+        // [!code highlight:2]
         clazz.addStudent(student1);
         clazz.addStudent(student2);
 
@@ -364,6 +371,7 @@ import java.util.List;
 // Student.java
 public class Student {
     private String name;
+    // [!code highlight:1]
     private List<Course> courses = new ArrayList<>(); // 持有多个 Course 的引用
 
     public Student(String name) {
@@ -383,6 +391,7 @@ public class Student {
 // Course.java
 public class Course {
     private String name;
+    // [!code highlight:1]
     private List<Student> students = new ArrayList<>(); // 持有多个 Student 的引用
 
     public Course(String name) {
@@ -408,6 +417,7 @@ public class Main {
         Course course1 = new Course("Java编程");
         Course course2 = new Course("数据结构");
 
+        // [!code highlight:8]
         // 建立双向关联
         student1.addCourse(course1);
         student1.addCourse(course2);
@@ -458,6 +468,7 @@ public class Fleet {
         this.name = name;
     }
 
+    // [!code highlight:4]
     // 外部创建的 Car 对象被加入到 Fleet 中
     public void addCar(Car car) {
         this.cars.add(car);
@@ -474,6 +485,7 @@ public class Main {
         fleet.addCar(car1);
         fleet.addCar(car2);
 
+        // [!code highlight:4]
         // 即使 fleet 对象被销毁，car1 和 car2 依然存在
         fleet = null;
         System.out.println(car1.getLicensePlate()); // 仍然可以访问
@@ -516,6 +528,7 @@ public class Car {
         // 在整体的构造函数中创建部分
         this.engine = new Engine();
         for (int i = 1; i <= 4; i++) {
+            // [!code highlight:1]
             this.wheels.add(new Wheel(i));
         }
         System.out.println("一辆新车被制造出来了");
@@ -535,6 +548,7 @@ public class Main {
         Car myCar = new Car();
         myCar.drive();
 
+        // [!code highlight:3]
         // 当 myCar 的引用丢失，GC 会回收 Car 对象，
         // 同时，由它创建的 Engine 和 Wheel 对象也会被回收。
         myCar = null;
