@@ -128,6 +128,7 @@ export default defineConfig({
       md.use(mathjax3);
       md.use(MermaidMarkdown);
     },
+    lineNumbers: true,
   },
   mermaid: {
     // refer https://mermaid.js.org/config/setup/modules/mermaidAPI.html#mermaidapi-configuration-defaults for options
