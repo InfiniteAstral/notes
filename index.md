@@ -22,12 +22,12 @@ hero:
 
 features:
   - title: 数学
-    details: 包含微积分、线性代数、概率论等数学相关笔记。
+    details: 微积分<br>线性代数<br>概率论
     link: /数学
   - title: 计算机科学
-    details: 涵盖数据结构、面向对象设计与 Java 编程等计算机知识。
+    details: 数据结构<br>面向对象设计与 Java 编程
     link: /计算机科学
   - title: 物理
-    details: 整理了大学物理等相关物理学笔记。
+    details: 大学物理
     link: /物理
 ---

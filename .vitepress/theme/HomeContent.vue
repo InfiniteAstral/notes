@@ -67,7 +67,7 @@ onMounted(() => {
     </div>
   </div>
   <div class="category-container">
-    <h2>学科分类</h2>
+    <h2>学科分类导航</h2>
   </div>
 </template>
 
