@@ -24,19 +24,19 @@ I/O 是**输入（Input）** 和**输出（Output）** 的缩写。在计算机�
 
 ```mermaid
 graph LR
-    subgraph 数据源 (Source)
+    subgraph "数据源 (Source)"
         direction LR
         F(文件)
         N(网络)
         M(内存)
     end
 
-    subgraph 程序 (Program)
+    subgraph "程序 (Program)"
         direction LR
         P(Java Application)
     end
 
-    subgraph 数据目标 (Sink)
+    subgraph "数据目标 (Sink)"
         direction LR
         F2(文件)
         N2(网络)
