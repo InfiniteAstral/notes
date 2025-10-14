@@ -42,17 +42,17 @@ classDiagram
     direction LR
     class Reader {
         <<abstract>>
-        +read(): int
-        +read(char[] cbuf): int
-        +close(): void
+        +read() int
+        +read(char[] cbuf) int
+        +close() void
     }
     class Writer {
         <<abstract>>
-        +write(int c): void
-        +write(char[] cbuf): void
-        +write(String str): void
-        +flush(): void
-        +close(): void
+        +write(int c) void
+        +write(char[] cbuf) void
+        +write(String str) void
+        +flush() void
+        +close() void
     }
 
     class FileReader

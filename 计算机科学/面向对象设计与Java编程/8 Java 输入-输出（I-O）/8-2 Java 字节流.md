@@ -18,23 +18,23 @@ classDiagram
     direction LR
     class InputStream {
         <<abstract>>
-        +read(): int
-        +read(byte[] b): int
-        +read(byte[] b, int off, int len): int
-        +skip(long n): long
-        +available(): int
-        +close(): void
-        +mark(int readlimit): void
-        +reset(): void
-        +markSupported(): boolean
+        +read() int
+        +read(byte[] b) int
+        +read(byte[] b, int off, int len) int
+        +skip(long n) long
+        +available() int
+        +close() void
+        +mark(int readlimit) void
+        +reset() void
+        +markSupported() boolean
     }
     class OutputStream {
         <<abstract>>
-        +write(int b): void
-        +write(byte[] b): void
-        +write(byte[] b, int off, int len): void
-        +flush(): void
-        +close(): void
+        +write(int b) void
+        +write(byte[] b) void
+        +write(byte[] b, int off, int len) void
+        +flush() void
+        +close() void
     }
 
     class FileInputStream
