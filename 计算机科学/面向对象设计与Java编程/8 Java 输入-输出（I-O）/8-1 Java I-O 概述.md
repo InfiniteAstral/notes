@@ -147,7 +147,7 @@ import java.io.File;
 public class DirectoryWalker {
     public static void main(String[] args) {
         // 创建一个代表目录的 File 对象 (请替换为你自己电脑上的有效目录路径)
-        File directory = new File("C:\Users\Public\Documents");
+        File directory = new File("C:/Users/Public/Documents");
 
         if (directory.exists() && directory.isDirectory()) {
             System.out.println("正在遍历目录: " + directory.getAbsolutePath());
