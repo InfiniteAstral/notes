@@ -93,8 +93,8 @@ const currentYear = new Date().getFullYear();
 
 // https://vitepress.dev/reference/site-config
 export default defineConfig({
-  title: "拾星絮语『笔记小站』",
-  description: "拾星絮语的笔记小站，知识在此汇成高塔。",
+  title: "拾星阁",
+  description: "知识在此汇成高塔",
   head: [['link', { rel: 'icon', href: 'https://static.owo.cab/favicon.ico' }]],
   lang: 'zh-CN',
   vue: {
