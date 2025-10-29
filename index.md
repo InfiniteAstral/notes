@@ -12,10 +12,10 @@ hero:
 
 features:
   - title: 数学
-    details: 微积分<br>线性代数<br>概率论
+    details: 概率论与数理统计
     link: /数学
   - title: 计算机科学
-    details: 数据结构<br>Java
+    details: 数据结构<br>面向对象设计与 Java 编程
     link: /计算机科学
   - title: 物理
     details: 大学物理
