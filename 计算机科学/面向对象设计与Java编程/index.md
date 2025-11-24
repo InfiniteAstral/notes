@@ -1,8 +1,12 @@
 # 《面向对象设计与 Java 编程》
 
-::: tip
+::: info Contributors
 本学科文章部分内容由 Gemini 2.5 Pro、Claude 4 Sonnet 和 GPT-5 生成，由 [<img src="https://github.com/TouHikari.png" alt="TouHikari" style="display: inline-block; width: 20px; height: 20px; border-radius: 100%; vertical-align: text-bottom;"> TouHikari](https://github.com/TouHikari/) 审阅并修改。
 :::
+
+**面向对象程序设计是一种具有对象概念的程序编程典范，同时也是一种程序开发的抽象方针**。它使用“对象”来模拟现实世界中的各种实体和概念。对象则指的是类的实例。它将对象作为程序的基本单元，将程序和数据封装其中，以提高软件的重用性、灵活性和扩展性。
+
+Java 是一门面向对象的编程语言，吸收了 C++ 语言的各种优点，还摒弃了 C++ 里难以理解的多继承、指针等概念，因此 Java 语言具有功能强大和简单易用两个特征。本课程以 Java 为基础，介绍面向对象的设计与编程方法。
 
 ## 目录
 

@@ -12,7 +12,7 @@ hero:
 
 features:
   - title: 数学
-    details: 概率论与数理统计
+    details: 概率论与数理统计<br>计算方法（数值分析）
     link: /数学
   - title: 计算机科学
     details: 数据结构<br>面向对象设计与 Java 编程
