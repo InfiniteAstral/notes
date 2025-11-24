@@ -1,5 +1,9 @@
 # 《数据结构》
 
+::: tip
+本学科笔记由 [<img src="https://github.com/TouHikari.png" alt="TouHikari" style="display: inline-block; width: 20px; height: 20px; border-radius: 100%; vertical-align: text-bottom;"> TouHikari](https://github.com/TouHikari/) 和 [<img src="https://github.com/zhxycn.png" alt="zhxycn" style="display: inline-block; width: 20px; height: 20px; border-radius: 100%; vertical-align: text-bottom;"> zhxycn](https://github.com/zhxycn/) 整理并贡献。
+:::
+
 ## 目录
 
 ### 1 [绪论](1%20绪论/index.html)

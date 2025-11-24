@@ -10,6 +10,6 @@
 
 <CourseLink text="概率论与数理统计" href="概率论与数理统计/index.html" />
 
-::: tip
+::: warning Incomplete!
 本学科的笔记更新尚未完结。
 :::
