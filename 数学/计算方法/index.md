@@ -1,7 +1,7 @@
 # 计算方法
 
 ::: info Contributors
-本学科笔记由 [<img src="https://github.com/TouHikari.png" alt="TouHikari" style="display: inline-block; width: 20px; height: 20px; border-radius: 100%; vertical-align: text-bottom;"> TouHikari](https://github.com/TouHikari/) 整理并贡献。
+本学科笔记由 [<img src="https://github.com/TouHikari.png" alt="TouHikari" style="display: inline-block; max-width: 20px; max-height: 20px; border-radius: 100%; vertical-align: text-bottom;"> TouHikari](https://github.com/TouHikari/) 整理并贡献。
 :::
 
 **计算方法（数值分析）** 是研究如何用计算机程序来求解数学问题的方法。它包括数值分析的基本理论、数值分析的算法设计与实现、数值分析的应用等。

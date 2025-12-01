@@ -1,7 +1,7 @@
 # 《数据结构》
 
 ::: info Contributors
-本学科笔记由 [<img src="https://github.com/TouHikari.png" alt="TouHikari" style="display: inline-block; width: 20px; height: 20px; border-radius: 100%; vertical-align: text-bottom;"> TouHikari](https://github.com/TouHikari/) 和 [<img src="https://github.com/zhxycn.png" alt="zhxycn" style="display: inline-block; width: 20px; height: 20px; border-radius: 100%; vertical-align: text-bottom;"> zhxycn](https://github.com/zhxycn/) 整理并贡献。
+本学科笔记由 [<img src="https://github.com/TouHikari.png" alt="TouHikari" style="display: inline-block; max-width: 20px; max-height: 20px; border-radius: 100%; vertical-align: text-bottom;"> TouHikari](https://github.com/TouHikari/) 和 [<img src="https://github.com/zhxycn.png" alt="zhxycn" style="display: inline-block; max-width: 20px; max-height: 20px; border-radius: 100%; vertical-align: text-bottom;"> zhxycn](https://github.com/zhxycn/) 整理并贡献。
 :::
 
 **数据结构是计算机中存储、组织数据的方式**。它是一种具有一定逻辑关系，在计算机中应用某种存储结构，并且封装了相应操作的数据元素集合。它包含三方面的内容，**逻辑关系**、**存储关系**及**操作**。
