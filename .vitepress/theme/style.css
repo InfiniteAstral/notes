@@ -8,6 +8,7 @@
 
 html {
   scroll-behavior: smooth;
+  overflow-y: scroll;
 }
 
 .VPNavBarTitle>.title {
