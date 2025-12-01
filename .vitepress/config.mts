@@ -5,6 +5,7 @@ import mathjax3 from 'markdown-it-mathjax3';
 import { MermaidMarkdown, MermaidPlugin } from "vitepress-plugin-mermaid";
 
 const customElements = [
+  'mjx-container',
   'mjx-assistive-mml',
   'math',
   'maction',
