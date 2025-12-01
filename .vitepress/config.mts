@@ -106,15 +106,15 @@ export default defineConfig({
   },
   vite: {
     plugins: [
-      MermaidPlugin(),
+      MermaidPlugin() as any,
       AutoNav({
         compareFn: (a, b) => {
-          const getTitle = (item) =>
+          const getTitle = (item: any) =>
             item.frontmatter?.h1 || item.options?.title || item.name;
-          return getTitle(a).localeCompare(getTitle(b), 'zh');
+          return getTitle(a).localeCompare(getTitle(b), 'zh', { numeric: true });
         },
         useArticleTitle: true,
-      }),
+      }) as any,
     ],
     optimizeDeps: {
       include: ["mermaid"],
