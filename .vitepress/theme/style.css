@@ -67,3 +67,15 @@ mjx-container {
   overflow-y: hidden;
   overflow-x: auto;
 }
+
+details.custom-block.details {
+  overflow: hidden;
+}
+
+details.custom-block.details.animating {
+  transition: height 0.3s ease-in-out;
+}
+
+details.custom-block.details summary {
+  margin: 0 !important;
+}
