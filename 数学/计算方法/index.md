@@ -20,6 +20,8 @@
 
 ### 5 [Jacobi 迭代法](5%20Jacobi%20迭代法/index.html)
 
+### 6 [JGS 迭代法](6%20JGS%20迭代法/index.html)
+
 ### 9 [曲线最小二乘拟合](9%20曲线最小二乘拟合/index.html)
 
 ### 10 [数值微分](10%20数值微分/index.html)

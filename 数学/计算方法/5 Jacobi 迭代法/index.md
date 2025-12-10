@@ -24,7 +24,7 @@
 
 ## Jacobi 迭代法
 
-::: info 原理
+::: info 原理推导过程
 Jacobi 迭代法类似简单迭代法：想办法将 $A\boldsymbol{x}=\boldsymbol{b}$ 转换为 $\boldsymbol{x}=B\boldsymbol{x}+\boldsymbol{g}$ 的形式。
 
 $$
@@ -155,4 +155,4 @@ $$\boldsymbol{g}_J=D^{-1}\boldsymbol{b}$$
 
 ### 充要条件
 
-**迭代矩阵 $B_J$ 的谱范数 $<1$**。
+**迭代矩阵 $B_J$ 的谱半径 $<1$**。
