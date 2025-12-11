@@ -29,25 +29,25 @@ $$
 写为 $A\boldsymbol{x}=\boldsymbol{b}$ 形式：
 
 $$
-\begin{bmatrix}
+\underset{A}{\begin{bmatrix}
  1 & 19 & 19^2\\
  1 & 25 & 25^2\\
  1 & 31 & 31^2\\
  1 & 38 & 38^2\\
  1 & 44 & 44^2
-\end{bmatrix}
-\begin{bmatrix}
+\end{bmatrix}}
+\underset{\boldsymbol{x}}{\begin{bmatrix}
  a_1\\
  a_2\\
  a_3
-\end{bmatrix} =
-\begin{bmatrix}
+\end{bmatrix}} =
+\underset{\boldsymbol{b}}{\begin{bmatrix}
  19.0\\
  32.3\\
  49.0\\
  73.3\\
  97.8
-\end{bmatrix}
+\end{bmatrix}}
 $$
 
 称这个无解的方程组为**矛盾方程组**。
@@ -61,21 +61,21 @@ $$
 即
 
 $$
-\begin{bmatrix}
+\underset{A^TA}{\begin{bmatrix}
  5 & 157 & 5327\\
  157 & 5327 & 192331\\
  5327 & 192331 & 7277699
-\end{bmatrix}
-\begin{bmatrix}
+\end{bmatrix}}
+\underset{\boldsymbol{x}}{\begin{bmatrix}
  a_1\\
  a_2\\
  a_3
-\end{bmatrix} =
-\begin{bmatrix}
+\end{bmatrix}} =
+\underset{\boldsymbol{A^Tb}}{\begin{bmatrix}
  271.4\\
  9776.1\\
  369321.5
-\end{bmatrix}
+\end{bmatrix}}
 $$
 
 解出这个正规方程组的解 $\boldsymbol{x}=\begin{bmatrix} a_1\\ a_2\\ a_3 \end{bmatrix}$，即为答案。
