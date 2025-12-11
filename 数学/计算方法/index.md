@@ -24,6 +24,8 @@
 
 ### 7 [Lagrange 插值](7%20Lagrange%20插值/index.html)
 
+### 8 [Newton 插值](8%20Newton%20插值/index.html)
+
 ### 9 [曲线最小二乘拟合](9%20曲线最小二乘拟合/index.html)
 
 ### 10 [数值微分](10%20数值微分/index.html)
