@@ -6,6 +6,7 @@
   },
   "devDependencies": {
     "@types/dom-view-transitions": "^1.0.6",
+    "@types/node": "^25.0.2",
     "mermaid": "^11.10.1",
     "vite-plugin-vitepress-auto-nav": "^3.0.0",
     "vitepress": "^1.6.4",

@@ -1,8 +1,36 @@
 import { defineConfig } from 'vitepress';
 import AutoNav from "vite-plugin-vitepress-auto-nav";
-
 import mathjax3 from 'markdown-it-mathjax3';
 import { MermaidMarkdown, MermaidPlugin } from "vitepress-plugin-mermaid";
+import * as fs from 'node:fs';
+import * as path from 'node:path';
+import { fileURLToPath } from 'url';
+
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
+const rootDir = path.resolve(__dirname, '..');
+
+const getItemsSetting = () => {
+  const settings: Record<string, { collapsed: boolean }> = {};
+  const walk = (dir: string, relativeDir: string = '') => {
+    const files = fs.readdirSync(dir);
+    for (const file of files) {
+      if (['node_modules', '.git', '.vitepress', 'dist', 'public', '.github'].includes(file)) continue;
+      const filePath = path.join(dir, file);
+      const stat = fs.statSync(filePath);
+      if (stat.isDirectory()) {
+        const relativePath = path.join(relativeDir, file);
+        const key = relativePath.split(path.sep).join('/');
+        settings[key] = { collapsed: true };
+        walk(filePath, relativePath);
+      }
+    }
+  };
+  walk(rootDir);
+  return settings;
+};
+
+const itemsSetting = getItemsSetting();
 
 const customElements = [
   'mjx-container',
@@ -109,6 +137,7 @@ export default defineConfig({
     plugins: [
       MermaidPlugin() as any,
       AutoNav({
+        itemsSetting,
         compareFn: (a, b) => {
           const getTitle = (item: any) =>
             item.frontmatter?.h1 || item.options?.title || item.name;
