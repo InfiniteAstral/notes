@@ -15,7 +15,7 @@ features:
     details: 概率论与数理统计<br>计算方法（数值分析）
     link: /数学
   - title: 计算机科学
-    details: 数据结构<br>面向对象设计与 Java 编程
+    details: 数据结构<br>面向对象设计与 Java 编程<br>软件工程导论
     link: /计算机科学
   - title: 物理
     details: 大学物理
