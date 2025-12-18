@@ -38,6 +38,6 @@ Java 是一门面向对象的编程语言，吸收了 C++ 语言的各种优点�
 
 <CourseLink text="软件工程导论" href="软件工程导论/index.html" />
 
-::: warning Incomplete!
-本学科的笔记更新尚未完结。
+::: info Completed.
+本学科的笔记更新已完结，后续或有修改与拓展。
 :::
