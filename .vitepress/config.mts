@@ -181,7 +181,8 @@ export default defineConfig({
         items: [
           { text: '数学', link: '/数学' },
           { text: '计算机科学', link: '/计算机科学' },
-          { text: '物理', link: '/物理' }
+          { text: '物理', link: '/物理' },
+          { text: '其他', link: '/其他' }
         ]
       }
     ],
