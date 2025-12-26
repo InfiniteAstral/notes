@@ -20,4 +20,7 @@ features:
   - title: 物理
     details: 大学物理
     link: /物理
+  - title: 其他
+    details: 经济学
+    link: /其他
 ---
