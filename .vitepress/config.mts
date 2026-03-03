@@ -159,6 +159,13 @@ export default defineConfig({
       md.use(MermaidMarkdown);
     },
     lineNumbers: true,
+    container: {
+      tipLabel: "提示",
+      warningLabel: "警告",
+      dangerLabel: "注意",
+      infoLabel: "相关信息",
+      detailsLabel: "详细信息"
+    }
   },
   mermaid: {
     // refer https://mermaid.js.org/config/setup/modules/mermaidAPI.html#mermaidapi-configuration-defaults for options
