@@ -22,6 +22,6 @@
 
 <CourseLink text="计算方法" href="计算方法/index.html" />
 
-::: warning Incomplete!
-本学科的笔记更新尚未完结。
+::: info Completed.
+本学科的笔记更新已完结，后续或有修改与拓展。
 :::
