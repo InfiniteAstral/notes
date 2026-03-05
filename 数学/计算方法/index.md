@@ -34,7 +34,7 @@
 
 ### 12 [Euler 方法及其改进](12%20Euler%20方法及其改进/index.html)
 
-<!-- ### 13 [Taylor 级数展开法](13%20Taylor%20级数展开法/index.html) -->
+### 13 [Taylor 级数展开法](13%20Taylor%20级数展开法/index.html)
 
 ## 参考资料
 

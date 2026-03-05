@@ -5,7 +5,7 @@
 $$
 \left\{\begin{matrix}
  \frac{\mathrm{d}y}{\mathrm{d}x}=f(x,y) & \text{（给定一阶常微分方程）}\\
- y(x_o) & \text{（给定方程的解的初值）}
+ y(x_o)=y_0 & \text{（给定方程的解的初值）}
 \end{matrix}\right.
 $$
 
