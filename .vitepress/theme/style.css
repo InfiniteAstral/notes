@@ -4,11 +4,28 @@
 :root {
   --vp-font-family-base: "Noto Sans SC", "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", "WenQuanYi Micro Hei", sans-serif;
   --vp-font-family-mono: "JetBrains Mono", "Maple Mono NF CN", "Fira Code", "SF Mono", "Monaco", "Inconsolata", "Roboto Mono", "Source Code Pro", "Consolas", "Courier New", ui-monospace, "Menlo", "Liberation Mono", "Courier New", monospace;
+  --selection-bg: #c7d2fe;
+  --selection-color: #1e1b4b;
+}
+
+.dark {
+  --selection-bg: #6366f1;
+  --selection-color: #f8fafc;
 }
 
 html {
   scroll-behavior: smooth;
   overflow-y: scroll;
+}
+
+::selection {
+  background: var(--selection-bg);
+  color: var(--selection-color);
+}
+
+::-moz-selection {
+  background: var(--selection-bg);
+  color: var(--selection-color);
 }
 
 .VPNavBarTitle>.title {
