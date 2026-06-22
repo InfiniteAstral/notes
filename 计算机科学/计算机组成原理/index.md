@@ -18,6 +18,8 @@
 
 ### 第 2 章 <a disabled style="cursor: not-allowed; color: var(--vp-c-text-2);">计算机的发展及应用（无作业内容）</a>
 
+### 第 3 章 [系统总线](3%20系统总线/index.html)
+
 ## 参考资料
 
 | 名称               | 作者      | 出版社         |
