@@ -1,6 +1,7 @@
 import { defineConfig } from 'vitepress';
 import AutoNav from "vite-plugin-vitepress-auto-nav";
-import mathjax3 from 'markdown-it-mathjax3';
+import katex from 'katex';
+import markdownItKatex from '@vscode/markdown-it-katex';
 import { MermaidMarkdown, MermaidPlugin } from "vitepress-plugin-mermaid";
 import * as fs from 'node:fs';
 import * as path from 'node:path';
@@ -32,92 +33,6 @@ const getItemsSetting = () => {
 
 const itemsSetting = getItemsSetting();
 
-const customElements = [
-  'mjx-container',
-  'mjx-assistive-mml',
-  'math',
-  'maction',
-  'maligngroup',
-  'malignmark',
-  'menclose',
-  'merror',
-  'mfenced',
-  'mfrac',
-  'mi',
-  'mlongdiv',
-  'mmultiscripts',
-  'mn',
-  'mo',
-  'mover',
-  'mpadded',
-  'mphantom',
-  'mroot',
-  'mrow',
-  'ms',
-  'mscarries',
-  'mscarry',
-  'mscarries',
-  'msgroup',
-  'mstack',
-  'mlongdiv',
-  'msline',
-  'mstack',
-  'mstack',
-  'mstyle',
-  'msub',
-  'msup',
-  'msubsup',
-  'mtable',
-  'mtd',
-  'mtext',
-  'mtr',
-  'munder',
-  'munderover',
-  'semantics',
-  'math',
-  'mi',
-  'mn',
-  'mo',
-  'ms',
-  'mspace',
-  'mtext',
-  'menclose',
-  'merror',
-  'mfenced',
-  'mfrac',
-  'mpadded',
-  'mphantom',
-  'mroot',
-  'mrow',
-  'msqrt',
-  'mstyle',
-  'mmultiscripts',
-  'mover',
-  'mprescripts',
-  'msub',
-  'msubsup',
-  'msup',
-  'munder',
-  'munderover',
-  'none',
-  'maligngroup',
-  'malignmark',
-  'mtable',
-  'mtd',
-  'mtr',
-  'mlongdiv',
-  'mscarries',
-  'mscarry',
-  'msgroup',
-  'msline',
-  'msrow',
-  'mstack',
-  'maction',
-  'semantics',
-  'annotation',
-  'annotation-xml',
-];
-
 const currentYear = new Date().getFullYear();
 
 // https://vitepress.dev/reference/site-config
@@ -126,13 +41,6 @@ export default defineConfig({
   description: "知识在此汇成高塔",
   head: [['link', { rel: 'icon', href: 'https://static.owo.cab/favicon.ico' }]],
   lang: 'zh-CN',
-  vue: {
-    template: {
-      compilerOptions: {
-        isCustomElement: (tag) => customElements.includes(tag),
-      },
-    },
-  },
   vite: {
     plugins: [
       MermaidPlugin() as any,
@@ -155,7 +63,12 @@ export default defineConfig({
   },
   markdown: {
     config: (md) => {
-      md.use(mathjax3);
+      md.use((markdownItKatex as any).default ?? markdownItKatex, {
+        katex,
+        throwOnError: false,
+        errorColor: '#cc0000',
+        strict: 'ignore',
+      });
       md.use(MermaidMarkdown);
     },
     lineNumbers: true,

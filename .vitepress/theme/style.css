@@ -124,21 +124,9 @@ html {
   word-break: break-word;
 }
 
-.vp-doc mjx-container[display="true"] {
-  display: block;
+.vp-doc .katex-display {
   overflow-x: auto;
   overflow-y: hidden;
-  -webkit-overflow-scrolling: touch;
-}
-
-.vp-doc mjx-container:not([display="true"]) {
-  display: inline-block;
-  max-width: 100%;
-  overflow-x: auto;
-  overflow-y: hidden;
-  vertical-align: middle;
-  white-space: nowrap;
-  -webkit-overflow-scrolling: touch;
 }
 
 details.custom-block.details {
