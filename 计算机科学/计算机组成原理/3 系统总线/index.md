@@ -2,17 +2,17 @@
 
 ## 例 3.1：假设总线的时钟频率为 100 MHz，总线的传输周期为 4 个时钟周期，总线的宽度为 32 位，试求总线的数据传输率。若想提高一倍数据传输率，可采取什么措施？
 
-根据总线时钟频率为 $100\,\text{MHz}$，得
+1. 根据总线时钟频率为 $100\,\text{MHz}$，得
 
-$1$ 个时钟周期为 $1/100\,\text{MHz} = 0.01\,\mu\text{s}$
+   $1$ 个时钟周期为 $1/100\,\text{MHz} = 0.01\,\mu\text{s}$
 
-总线传输周期为 $0.01\,\mu\text{s} \times 4 = 0.04\,\mu\text{s}$
+   总线传输周期为 $0.01\,\mu\text{s} \times 4 = 0.04\,\mu\text{s}$
 
-由于总线的宽度为 $32$ 位 ＝ $4\,\text{B}$（字节）
+   由于总线的宽度为 $32$ 位 ＝ $4\,\text{B}$（字节）
 
-故总线的数据传输率为 $4\,\text{B} / 0.04\,\mu\text{s} = 100\,\text{MBps}$
+   故总线的数据传输率为 $4\,\text{B} / 0.04\,\mu\text{s} = 100\,\text{MBps}$
 
-若想提高一倍数据传输率，可以在不改变总线时钟频率的前提下，将数据线的宽度改为 $64$ 位，也可以仍保持数据宽度为 $32$ 位，但使总线的时钟频率增加到 $200\,\text{MHz}$ 。
+2. 若想提高一倍数据传输率，可以在不改变总线时钟频率的前提下，将数据线的宽度改为 $64$ 位，也可以仍保持数据宽度为 $32$ 位，但使总线的时钟频率增加到 $200\,\text{MHz}$ 。
 
 ## 例 3.2：在异步串行传输系统中，假设每秒传输 120 个数据帧，其字符格式规定包含 1 个起始位、7 个数据位、1 个奇校验位、1 个终止位，试计算波特率。
 
@@ -70,24 +70,24 @@ $$1\,200\times(8/11) = 872.72\,\text{bps}$$
 
 1. **单总线结构**：将 CPU、主存、I/O 设备都挂在一组总线上，允许 I/O 之间或 I/O 与主存之间直接交换信息。因为所有的传送都通过这组共享总线，极易形成计算机系统的瓶颈，不允许两个以上部件在同一时刻向总线传输信息，必然会影响系统工作效率的提高，ISA、EISA 总线是单总线结构。
 
-   ![单总线结构](https://static.owo.cab/notes/image/cs/poco/chapter03/单总线结构.svg)
+   ![单总线结构](https://static.owo.cab/notes/image/cs/poco/chapter03/单总线结构.drawio.svg)
 
 2. **双总线结构**：双总线结构的特点是将速度较低的设备从总线上分离出来，形成主存总线与 I/O 总线分开的结构。通道是一个具有特殊功能的处理器，CPU 将一部分功能下放给通道，使其对 I/O 设备具有统一管理的功能，系统的吞吐能力可以相当大。如果将不同速率的 I/O 设备进行分类，然后将它们连接在不同的通道上，将成为总线结构。
 
-   ![双总线结构](https://static.owo.cab/notes/image/cs/poco/chapter03/双总线结构.svg)
+   ![双总线结构](https://static.owo.cab/notes/image/cs/poco/chapter03/双总线结构.drawio.svg)
 
 3. **三总线结构**：
    - 主存总线用于 CPU 与主存间的传输；I/O 总线供 CPU 与各类 I/O 之间传递信息，DMA 总线用于高速外设（磁盘，磁带等）与主存之间直接交换信息。
 
-     ![三总线结构-1](https://static.owo.cab/notes/image/cs/poco/chapter03/三总线结构-1.svg)
+     ![三总线结构-1](https://static.owo.cab/notes/image/cs/poco/chapter03/三总线结构-1.drawio.svg)
 
    - 处理器于高速缓冲存储器 Cache 之间增加一条局部总线，Cache 可以通过系统总线与主存传输信息，I/O 与主存之间也不必通过 CPU。还有一条扩展总线，可以支持相当多的 I/O 设备。
 
-     ![三总线结构-2](https://static.owo.cab/notes/image/cs/poco/chapter03/三总线结构-2.svg)
+     ![三总线结构-2](https://static.owo.cab/notes/image/cs/poco/chapter03/三总线结构-2.drawio.svg)
 
 4. **四总线结构**：在三总线基础上，增加一条与计算机系统机密相连的高速总线，这种结构对高速设备而言，其自身的工作可以很少依赖处理器，同时它们又比扩展总线上的设备更贴近处理器。
 
-   ![四总线结构](https://static.owo.cab/notes/image/cs/poco/chapter03/四总线结构.svg)
+   ![四总线结构](https://static.owo.cab/notes/image/cs/poco/chapter03/四总线结构.drawio.svg)
 
 ## 3.4：为什么要设置总线判优控制？常见的集中式总线控制有几种，各有何特点，哪种方式响应时间最快，哪种方式对电路故障最敏感？
 
@@ -118,7 +118,7 @@ $$1\,200\times(8/11) = 872.72\,\text{bps}$$
 
 异步通信的应答方式可分为不互锁、半互锁和全互锁三种，如下图。
 
-![异步通信中请求与回答的互锁](https://static.owo.cab/notes/image/cs/poco/chapter03/异步通信中请求与回答的互锁.svg)
+![异步通信中请求与回答的互锁](https://static.owo.cab/notes/image/cs/poco/chapter03/异步通信中请求与回答的互锁.drawio.svg)
 
 ## 3.8：为什么说半同步通信同时保留了同步通信和异步通信的特点？
 

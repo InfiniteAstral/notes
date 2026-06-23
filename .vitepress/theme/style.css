@@ -127,6 +127,7 @@ html {
 .vp-doc .katex-display {
   overflow-x: auto;
   overflow-y: hidden;
+  padding: 0.2rem 0;
 }
 
 details.custom-block.details {
