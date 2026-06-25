@@ -28,7 +28,7 @@
 
 ### 第 7 章 [指令系统](7%20指令系统/index.html)
 
-### 第 8 章 <a disabled style="cursor: not-allowed; color: var(--vp-c-text-2);">CPU 的结构和功能（无作业内容）</a>
+### 第 8 章 [CPU 的结构和功能](8%20CPU的结构和功能/index.html)
 
 ### 第 9 章 [控制单元的功能](9%20控制单元的功能/index.html)
 
