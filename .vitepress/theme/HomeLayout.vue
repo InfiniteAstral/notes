@@ -15,11 +15,11 @@ toggleDark(isDark)
       <HomeContent v-if="frontmatter.layout === 'home'" />
     </template>
     <template #layout-bottom>
-      <footer v-if="theme.footer && frontmatter.layout !== 'home'" class="VPFooter">
+      <!-- <footer v-if="theme.footer && frontmatter.layout !== 'home'" class="VPFooter">
         <div class="container">
           <p class="copyright" v-html="theme.footer.copyright"></p>
         </div>
-      </footer>
+      </footer> -->
     </template>
   </Layout>
 </template>

@@ -92,14 +92,49 @@ export default defineConfig({
     search: {
       provider: 'local',
       options: {
+        locales: {
+          root: {
+            translations: {
+              button: {
+                buttonText: '搜索',
+                buttonAriaLabel: '搜索'
+              },
+              modal: {
+                displayDetails: '显示详细列表',
+                resetButtonTitle: '重置搜索',
+                backButtonTitle: '关闭搜索',
+                noResultsText: '没有结果',
+                footer: {
+                  selectText: '选择',
+                  selectKeyAriaLabel: '输入',
+                  navigateText: '导航',
+                  navigateUpKeyAriaLabel: '上箭头',
+                  navigateDownKeyAriaLabel: '下箭头',
+                  closeText: '关闭',
+                  closeKeyAriaLabel: 'Esc'
+                }
+              }
+            }
+          }
+        },
         detailedView: true,
       },
     },
     outline: {
-      level: [2, 5]
+      level: [2, 5],
+      label: '文章导航',
     },
     nav: [
-      { text: 'Home', link: '/' },
+      { text: '主页', link: '/' },
+      {
+        text: '学科',
+        items: [
+          {text: '数学', link: '/数学'},
+          {text: '计算机科学', link: '/计算机科学'},
+          {text: '物理', link: '/物理'},
+          {text: '其他', link: '/其他'},
+        ]
+      }
     ],
     sidebar: [
       {
@@ -117,6 +152,18 @@ export default defineConfig({
     ],
     footer: {
       copyright: `© ${currentYear} InfiniteAstral · <a href="https://github.com/InfiniteAstral/notes" target="_blank" rel="noopener noreferrer">GitHub</a>`
+    },
+    lastUpdated: {
+      text: '最后更新时间',
+      formatOptions: {
+        forceLocale: true,
+        dateStyle: 'medium',
+        timeStyle: 'short',
+      }
+    },
+    docFooter: {
+      prev: '上一页',
+      next: '下一页',
     }
   }
 });

@@ -1,6 +1,6 @@
 # 计算方法
 
-::: info Contributors
+::: info 本学科的贡献者
 本学科笔记由 [<img src="https://github.com/TouHikari.png" alt="TouHikari" style="display: inline-block; max-width: 20px; max-height: 20px; border-radius: 100%; vertical-align: text-bottom;"> TouHikari](https://github.com/TouHikari/) 整理并贡献。
 :::
 

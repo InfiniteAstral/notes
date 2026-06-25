@@ -10,6 +10,6 @@
 
 <CourseLink text="大学物理" href="大学物理/index.html" />
 
-::: warning Incomplete!
+::: warning 未完结
 本学科的笔记更新尚未完结。
 :::

@@ -1,6 +1,6 @@
 # 《计算机操作系统》
 
-::: info Contributors
+::: info 本学科的贡献者
 本学科笔记由 [<img src="https://github.com/TouHikari.png" alt="TouHikari" style="display: inline-block; max-width: 20px; max-height: 20px; border-radius: 100%; vertical-align: text-bottom;"> TouHikari](https://github.com/TouHikari/) 整理并贡献。
 :::
 
@@ -12,9 +12,9 @@
 
 ### 第 1 章 [操作系统概论](1%20操作系统概论/index.html)
 
-<!-- ### 第 2 章 [作业管理和用户接口](2%20作业管理和用户接口/index.html)
+### 第 2 章 [作业管理和用户接口](2%20作业管理和用户接口/index.html)
 
-### 第 3 章 [进程管理](3%20进程管理/index.html)
+<!-- ### 第 3 章 [进程管理](3%20进程管理/index.html)
 
 ### 第 4 章 [存储管理](4%20存储管理/index.html)
 

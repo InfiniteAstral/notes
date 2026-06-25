@@ -1,6 +1,6 @@
 # 《面向对象设计与 Java 编程》
 
-::: info Contributors
+::: info 本学科的贡献者
 本学科文章部分内容由 Gemini 2.5 Pro、Claude 4 Sonnet 和 GPT-5 生成，由 [<img src="https://github.com/TouHikari.png" alt="TouHikari" style="display: inline-block; max-width: 20px; max-height: 20px; border-radius: 100%; vertical-align: text-bottom;"> TouHikari](https://github.com/TouHikari/) 审阅并修改。
 :::
 

@@ -10,7 +10,7 @@
 
 <CourseLink text="概率论与数理统计" href="概率论与数理统计/index.html" />
 
-::: warning Incomplete!
+::: warning 未完结
 本学科的笔记更新尚未完结。
 :::
 
@@ -22,6 +22,6 @@
 
 <CourseLink text="计算方法" href="计算方法/index.html" />
 
-::: info Completed.
+::: info 已完结
 本学科的笔记更新已完结，后续或有修改与拓展。
 :::
