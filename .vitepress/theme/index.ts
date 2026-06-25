@@ -6,6 +6,7 @@ import CourseLink from './CourseLink.vue'
 import InlineMath from './InlineMath.vue'
 import './style.css'
 import { enableDetailsAnimation } from './details-animation'
+import { enableOutlineAutoScroll } from './outline-auto-scroll'
 
 export default {
   extends: DefaultTheme,
@@ -14,5 +15,6 @@ export default {
     app.component('CourseLink', CourseLink)
     app.component('InlineMath', InlineMath)
     enableDetailsAnimation()
+    enableOutlineAutoScroll()
   }
 } satisfies Theme

@@ -90,7 +90,7 @@ export default defineConfig({
   themeConfig: {
     // https://vitepress.dev/reference/default-theme-config
     outline: {
-      level: [2, 4]
+      level: [2, 5]
     },
     nav: [
       { text: 'Home', link: '/' },
