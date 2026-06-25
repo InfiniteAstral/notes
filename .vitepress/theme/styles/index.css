@@ -2,6 +2,7 @@
 @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@400;700&display=swap');
 
 :root {
+  color-scheme: light;
   --vp-font-family-base: "Noto Sans SC", "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", "WenQuanYi Micro Hei", sans-serif;
   --vp-font-family-mono: "JetBrains Mono", "Maple Mono NF CN", "Fira Code", "SF Mono", "Monaco", "Inconsolata", "Roboto Mono", "Source Code Pro", "Consolas", "Courier New", ui-monospace, "Menlo", "Liberation Mono", "Courier New", monospace;
   --selection-bg: #c7d2fe;
@@ -11,6 +12,7 @@
 }
 
 .dark {
+  color-scheme: dark;
   --selection-bg: #6366f1;
   --selection-color: #f8fafc;
 }

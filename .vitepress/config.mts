@@ -39,8 +39,15 @@ const currentYear = new Date().getFullYear();
 export default defineConfig({
   title: "拾星阁",
   description: "知识在此汇成高塔",
-  head: [['link', { rel: 'icon', href: 'https://static.owo.cab/favicon.ico' }]],
+  head: [
+    ['link', { rel: 'icon', href: 'https://static.owo.cab/favicon.ico' }],
+    ['meta', { name: 'color-scheme', content: 'light dark' }],
+    ['meta', { name: 'supported-color-schemes', content: 'light dark' }],
+    ['meta', { name: 'theme-color', media: '(prefers-color-scheme: light)', content: '#ffffff' }],
+    ['meta', { name: 'theme-color', media: '(prefers-color-scheme: dark)', content: '#1b1b1f' }],
+  ],
   lang: 'zh-CN',
+  appearance: true,
   vite: {
     plugins: [
       MermaidPlugin() as any,
@@ -120,6 +127,7 @@ export default defineConfig({
         detailedView: true,
       },
     },
+    sidebarMenuLabel: '菜单',
     outline: {
       level: [2, 5],
       label: '文章导航',
@@ -164,6 +172,9 @@ export default defineConfig({
     docFooter: {
       prev: '上一页',
       next: '下一页',
-    }
+    },
+    darkModeSwitchLabel: '主题模式',
+    darkModeSwitchTitle: '切换到深色模式',
+    lightModeSwitchTitle: '切换到浅色模式',
   }
 });
