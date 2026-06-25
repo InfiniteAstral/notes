@@ -6,6 +6,7 @@ import { MermaidMarkdown, MermaidPlugin } from "vitepress-plugin-mermaid";
 import * as fs from 'node:fs';
 import * as path from 'node:path';
 import { fileURLToPath } from 'url';
+import { getReadingStatsFromFile } from './utils/reading-stats';
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
@@ -48,6 +49,23 @@ export default defineConfig({
   ],
   lang: 'zh-CN',
   appearance: true,
+  transformPageData: (pageData) => {
+    if (!pageData.filePath.endsWith('.md')) return;
+    if (pageData.frontmatter?.layout === 'home') return;
+
+    const absolutePath = path.resolve(rootDir, pageData.filePath);
+    const stats = getReadingStatsFromFile(absolutePath);
+
+    if (!stats) return;
+
+    return {
+      frontmatter: {
+        ...pageData.frontmatter,
+        wordCount: stats.wordCount,
+        readingTime: stats.readingTime,
+      },
+    };
+  },
   vite: {
     plugins: [
       MermaidPlugin() as any,

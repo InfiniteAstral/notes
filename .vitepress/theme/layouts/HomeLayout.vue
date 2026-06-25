@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import DefaultTheme from 'vitepress/theme'
+import ArticleMeta from '../components/global/ArticleMeta.vue'
 import HomeContent from '../components/home/HomeContent.vue'
 import { useData } from 'vitepress'
 import { setupAppearanceToggle } from '../composables/useAppearanceToggle'
@@ -11,6 +12,9 @@ setupAppearanceToggle(isDark)
 
 <template>
   <Layout>
+    <template #doc-before>
+      <ArticleMeta />
+    </template>
     <template #home-hero-after>
       <HomeContent v-if="frontmatter.layout === 'home'" />
     </template>
