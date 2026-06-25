@@ -6,6 +6,8 @@
   --vp-font-family-mono: "JetBrains Mono", "Maple Mono NF CN", "Fira Code", "SF Mono", "Monaco", "Inconsolata", "Roboto Mono", "Source Code Pro", "Consolas", "Courier New", ui-monospace, "Menlo", "Liberation Mono", "Courier New", monospace;
   --selection-bg: #c7d2fe;
   --selection-color: #1e1b4b;
+  --vp-local-search-highlight-bg: var(--selection-bg);
+  --vp-local-search-highlight-text: var(--selection-color);
 }
 
 .dark {
@@ -101,6 +103,7 @@ html {
   max-height: none !important;
   overflow: visible !important;
   text-overflow: clip !important;
+  line-clamp: unset !important;
   -webkit-line-clamp: unset !important;
 }
 
@@ -140,4 +143,14 @@ details.custom-block.details.animating {
 
 details.custom-block.details summary {
   margin: 0 !important;
+}
+
+.DocSearch-Modal .titles mark,
+.DocSearch-Modal .excerpt mark {
+  background: var(--vp-local-search-highlight-bg);
+  color: var(--vp-local-search-highlight-text);
+  border: 1px solid color-mix(in srgb, var(--vp-local-search-highlight-text) 18%, transparent);
+  border-radius: 6px;
+  padding: 0 0.25em;
+  box-shadow: inset 0 -1px 0 color-mix(in srgb, var(--vp-local-search-highlight-text) 12%, transparent);
 }

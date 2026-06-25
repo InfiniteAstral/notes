@@ -89,6 +89,12 @@ export default defineConfig({
   },
   themeConfig: {
     // https://vitepress.dev/reference/default-theme-config
+    search: {
+      provider: 'local',
+      options: {
+        detailedView: true,
+      },
+    },
     outline: {
       level: [2, 5]
     },
