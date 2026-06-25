@@ -1,8 +1,18 @@
-<script setup>
-import { ref, onMounted } from 'vue'
+<script setup lang="ts">
+import { computed, ref, onMounted } from 'vue'
+import { useData } from 'vitepress'
+import type { ThemeConfig } from '../../../theme-config'
 
 const contributorsSvg = ref('')
-const contributorsContainer = ref(null)
+const contributorsContainer = ref<HTMLElement | null>(null)
+const { theme } = useData<ThemeConfig>()
+
+const totalWordCountText = computed(() => {
+  const totalWordCount = Number(theme.value.siteStats?.totalWordCount)
+
+  if (!Number.isFinite(totalWordCount)) return null
+  return totalWordCount.toLocaleString('zh-CN')
+})
 
 onMounted(() => {
   const observer = new IntersectionObserver(
@@ -52,6 +62,9 @@ onMounted(() => {
       </strong>
     </p>
     <p>愿小站能够不断成长，内容日益丰明，成为一个真正有价值的知识宝库。</p>
+    <p v-if="totalWordCountText" class="site-word-count">
+      截至目前，已有 <span class="word-count">{{ totalWordCountText }}</span> 字的知识在此汇入高塔
+    </p>
   </div>
   <div ref="contributorsContainer" class="contributors-container">
     <h2>本站的贡献者</h2>
@@ -181,5 +194,17 @@ p {
   text-align: left;
   color: var(--vp-c-text-2);
   margin-bottom: 16px;
+}
+
+.site-word-count {
+  font-size: 14px;
+  line-height: 24px;
+  color: var(--vp-c-text-2);
+  text-align: center;
+  margin-top: 3em;
+}
+
+.word-count {
+  color: var(--vp-c-brand-2)
 }
 </style>

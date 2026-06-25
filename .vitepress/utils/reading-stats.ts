@@ -1,6 +1,15 @@
 import * as fs from 'node:fs'
+import * as path from 'node:path'
 
 const READING_SPEED = 400
+const IGNORED_DIRECTORIES = new Set([
+  'node_modules',
+  '.git',
+  '.vitepress',
+  'dist',
+  'public',
+  '.github'
+])
 
 function stripFrontmatter(content: string) {
   return content.replace(/^---\r?\n[\s\S]*?\r?\n---\r?\n?/, '')
@@ -47,4 +56,34 @@ export function getReadingStatsFromFile(filePath: string) {
 
   const rawContent = fs.readFileSync(filePath, 'utf-8')
   return getReadingStats(rawContent)
+}
+
+export function getTotalWordCount(rootDir: string) {
+  let totalWordCount = 0
+
+  const walk = (currentDir: string) => {
+    const entries = fs.readdirSync(currentDir, { withFileTypes: true })
+
+    for (const entry of entries) {
+      if (entry.isDirectory()) {
+        if (IGNORED_DIRECTORIES.has(entry.name)) continue
+
+        walk(path.join(currentDir, entry.name))
+        continue
+      }
+
+      if (!entry.isFile() || !entry.name.endsWith('.md')) continue
+
+      const filePath = path.join(currentDir, entry.name)
+      const stats = getReadingStatsFromFile(filePath)
+
+      if (stats) {
+        totalWordCount += stats.wordCount
+      }
+    }
+  }
+
+  walk(rootDir)
+
+  return totalWordCount
 }

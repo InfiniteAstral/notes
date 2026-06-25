@@ -1,4 +1,4 @@
-import { defineConfig } from 'vitepress';
+import { defineConfigWithTheme } from 'vitepress';
 import AutoNav from "vite-plugin-vitepress-auto-nav";
 import katex from 'katex';
 import markdownItKatex from '@vscode/markdown-it-katex';
@@ -6,7 +6,8 @@ import { MermaidMarkdown, MermaidPlugin } from "vitepress-plugin-mermaid";
 import * as fs from 'node:fs';
 import * as path from 'node:path';
 import { fileURLToPath } from 'url';
-import { getReadingStatsFromFile } from './utils/reading-stats';
+import { getReadingStatsFromFile, getTotalWordCount } from './utils/reading-stats';
+import type { ThemeConfig } from './theme-config';
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
@@ -35,9 +36,10 @@ const getItemsSetting = () => {
 const itemsSetting = getItemsSetting();
 
 const currentYear = new Date().getFullYear();
+const totalWordCount = getTotalWordCount(rootDir);
 
 // https://vitepress.dev/reference/site-config
-export default defineConfig({
+export default defineConfigWithTheme<ThemeConfig>({
   title: "拾星阁",
   description: "知识在此汇成高塔",
   head: [
@@ -195,5 +197,8 @@ export default defineConfig({
     darkModeSwitchTitle: '切换到深色模式',
     lightModeSwitchTitle: '切换到浅色模式',
     returnToTopLabel: '返回顶部',
+    siteStats: {
+      totalWordCount,
+    },
   }
 });
