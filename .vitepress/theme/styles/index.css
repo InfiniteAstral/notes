@@ -22,6 +22,10 @@ html {
   overflow-y: scroll;
 }
 
+h5 {
+  margin: 16px 0;
+}
+
 ::selection {
   background: var(--selection-bg);
   color: var(--selection-color);
