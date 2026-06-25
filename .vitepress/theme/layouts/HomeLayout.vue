@@ -1,12 +1,12 @@
-<script setup>
+<script setup lang="ts">
 import DefaultTheme from 'vitepress/theme'
-import HomeContent from './HomeContent.vue'
+import HomeContent from '../components/home/HomeContent.vue'
 import { useData } from 'vitepress'
-import { toggleDark } from './Dark'
+import { setupAppearanceToggle } from '../composables/useAppearanceToggle'
 
 const { Layout } = DefaultTheme
-const { isDark, theme, frontmatter } = useData()
-toggleDark(isDark)
+const { isDark, frontmatter } = useData()
+setupAppearanceToggle(isDark)
 </script>
 
 <template>

@@ -1,10 +1,11 @@
 import { nextTick, provide } from 'vue'
+import type { Ref } from 'vue'
 
 const enableTransitions = () => {
   return 'startViewTransition' in document && window.matchMedia('(prefers-reduced-motion: no-preference)').matches
 }
 
-export const toggleDark = (isDark) => {
+export function setupAppearanceToggle(isDark: Ref<boolean>) {
   provide('toggle-appearance', async ({ clientX: x, clientY: y }: MouseEvent) => {
     if (!enableTransitions()) {
       isDark.value = !isDark.value
