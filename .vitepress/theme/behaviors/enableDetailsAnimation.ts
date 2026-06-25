@@ -1,3 +1,127 @@
+type BoxSpacing = {
+  paddingTop: number;
+  paddingRight: number;
+  paddingBottom: number;
+  paddingLeft: number;
+};
+
+function readBoxSpacing(element: HTMLElement): BoxSpacing {
+  const style = window.getComputedStyle(element);
+
+  return {
+    paddingTop: parseFloat(style.paddingTop) || 0,
+    paddingRight: parseFloat(style.paddingRight) || 0,
+    paddingBottom: parseFloat(style.paddingBottom) || 0,
+    paddingLeft: parseFloat(style.paddingLeft) || 0,
+  };
+}
+
+function applyBoxSpacing(element: HTMLElement, spacing: BoxSpacing) {
+  element.style.paddingTop = `${spacing.paddingTop}px`;
+  element.style.paddingRight = `${spacing.paddingRight}px`;
+  element.style.paddingBottom = `${spacing.paddingBottom}px`;
+  element.style.paddingLeft = `${spacing.paddingLeft}px`;
+}
+
+function clearAnimatedStyles(element: HTMLElement) {
+  element.style.height = "";
+  element.style.paddingTop = "";
+  element.style.paddingRight = "";
+  element.style.paddingBottom = "";
+  element.style.paddingLeft = "";
+}
+
+function finishAnimation(details: HTMLDetailsElement, shouldClose: boolean) {
+  details.classList.remove("animating");
+
+  if (shouldClose) {
+    details.open = false;
+  }
+
+  clearAnimatedStyles(details);
+  delete details.dataset.isAnimating;
+}
+
+function animateDetails(
+  details: HTMLDetailsElement,
+  fromHeight: number,
+  toHeight: number,
+  fromSpacing: BoxSpacing,
+  toSpacing: BoxSpacing,
+  shouldCloseOnFinish: boolean,
+) {
+  details.dataset.isAnimating = "true";
+  details.classList.add("animating");
+  details.style.height = `${fromHeight}px`;
+  applyBoxSpacing(details, fromSpacing);
+
+  void details.offsetHeight;
+
+  requestAnimationFrame(() => {
+    details.style.height = `${toHeight}px`;
+    applyBoxSpacing(details, toSpacing);
+  });
+
+  const onEnd = (event: TransitionEvent) => {
+    if (event.target !== details || event.propertyName !== "height") {
+      return;
+    }
+
+    details.removeEventListener("transitionend", onEnd);
+    finishAnimation(details, shouldCloseOnFinish);
+  };
+
+  details.addEventListener("transitionend", onEnd);
+}
+
+function expandDetails(details: HTMLDetailsElement) {
+  const collapsedSpacing = readBoxSpacing(details);
+  const collapsedHeight = details.offsetHeight;
+
+  details.style.height = `${collapsedHeight}px`;
+  applyBoxSpacing(details, collapsedSpacing);
+  details.open = true;
+
+  clearAnimatedStyles(details);
+
+  const expandedSpacing = readBoxSpacing(details);
+  const expandedHeight = details.offsetHeight;
+
+  animateDetails(
+    details,
+    collapsedHeight,
+    expandedHeight,
+    collapsedSpacing,
+    expandedSpacing,
+    false,
+  );
+}
+
+function collapseDetails(details: HTMLDetailsElement) {
+  const expandedSpacing = readBoxSpacing(details);
+  const expandedHeight = details.offsetHeight;
+
+  details.style.height = `${expandedHeight}px`;
+  applyBoxSpacing(details, expandedSpacing);
+  details.open = false;
+
+  clearAnimatedStyles(details);
+
+  const collapsedSpacing = readBoxSpacing(details);
+  const collapsedHeight = details.offsetHeight;
+
+  details.open = true;
+
+  animateDetails(
+    details,
+    expandedHeight,
+    collapsedHeight,
+    expandedSpacing,
+    collapsedSpacing,
+    true,
+  );
+}
+
 export function enableDetailsAnimation() {
   if (typeof window === "undefined") return;
 
@@ -23,69 +147,12 @@ export function enableDetailsAnimation() {
     }
 
     e.preventDefault();
-    details.dataset.isAnimating = "true";
-
-    const computedStyle = window.getComputedStyle(details);
-    const paddingTop = parseFloat(computedStyle.paddingTop) || 0;
-    const paddingBottom = parseFloat(computedStyle.paddingBottom) || 0;
-    const borderTop = parseFloat(computedStyle.borderTopWidth) || 0;
-    const borderBottom = parseFloat(computedStyle.borderBottomWidth) || 0;
-
-    const summaryHeight = summary.offsetHeight;
-
-    const collapsedHeight =
-      summaryHeight + paddingTop + paddingBottom + borderTop + borderBottom;
 
     if (details.open) {
-      // 收起动画
-
-      const startHeight = details.offsetHeight;
-      details.style.height = `${startHeight}px`;
-
-      details.offsetHeight;
-
-      details.classList.add("animating");
-
-      requestAnimationFrame(() => {
-        details.style.height = `${collapsedHeight}px`;
-      });
-
-      const onEnd = () => {
-        details.removeEventListener("transitionend", onEnd);
-        details.classList.remove("animating");
-        details.open = false;
-        details.style.height = "";
-        delete details.dataset.isAnimating;
-      };
-      details.addEventListener("transitionend", onEnd);
-    } else {
-      // 展开动画
-
-      const startHeight = details.offsetHeight;
-
-      details.style.height = `${startHeight}px`;
-      details.open = true;
-
-      details.style.height = "";
-      const fullHeight = details.offsetHeight;
-
-      details.style.height = `${startHeight}px`;
-
-      details.offsetHeight;
-
-      details.classList.add("animating");
-
-      requestAnimationFrame(() => {
-        details.style.height = `${fullHeight}px`;
-      });
-
-      const onEnd = () => {
-        details.removeEventListener("transitionend", onEnd);
-        details.classList.remove("animating");
-        details.style.height = "";
-        delete details.dataset.isAnimating;
-      };
-      details.addEventListener("transitionend", onEnd);
+      collapseDetails(details);
+      return;
     }
+
+    expandDetails(details);
   });
 }

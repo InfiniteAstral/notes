@@ -135,10 +135,21 @@ html {
 
 details.custom-block.details {
   overflow: hidden;
+  transform: translateZ(0);
+  will-change: height, padding;
+}
+
+details.custom-block.details:not([open]) {
+  padding: 16px;
 }
 
 details.custom-block.details.animating {
-  transition: height 0.3s ease-in-out;
+  transition:
+    height 0.46s cubic-bezier(0.22, 1, 0.36, 1),
+    padding-top 0.46s cubic-bezier(0.22, 1, 0.36, 1),
+    padding-right 0.46s cubic-bezier(0.22, 1, 0.36, 1),
+    padding-bottom 0.46s cubic-bezier(0.22, 1, 0.36, 1),
+    padding-left 0.46s cubic-bezier(0.22, 1, 0.36, 1);
 }
 
 details.custom-block.details summary {
