@@ -153,11 +153,11 @@ export default defineConfigWithTheme<ThemeConfig>({
       label: '文章导航',
     },
     nav: [
-      { text: '主页', link: '/' },
-      { text: '数学', link: '/数学' },
-      { text: '计算机科学', link: '/计算机科学' },
-      { text: '物理', link: '/物理' },
-      { text: '其他', link: '/其他' },
+      { text: '主页', link: '/', activeMatch: '^/$' },
+      { text: '数学', link: '/数学', activeMatch: '^/数学(/|$)' },
+      { text: '计算机科学', link: '/计算机科学', activeMatch: '^/计算机科学(/|$)' },
+      { text: '物理', link: '/物理', activeMatch: '^/物理(/|$)' },
+      { text: '其他', link: '/其他', activeMatch: '^/其他(/|$)' },
     ],
     sidebar: [
       {
