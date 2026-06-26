@@ -195,5 +195,9 @@ export default defineConfigWithTheme<ThemeConfig>({
     siteStats: {
       totalWordCount,
     },
+    editLink: {
+      pattern: 'https://github.com/InfiniteAstral/notes/issues',
+      text: '文章存在错误？向我们提交 Issue',
+    }
   }
 });
