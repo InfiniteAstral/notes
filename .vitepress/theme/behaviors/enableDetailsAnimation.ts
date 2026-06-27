@@ -5,6 +5,22 @@ type BoxSpacing = {
   paddingLeft: number;
 };
 
+type DetailsMetrics = {
+  height: number;
+  spacing: BoxSpacing;
+};
+
+type AnimationState = {
+  onEnd: (event: TransitionEvent) => void;
+  rafId: number | null;
+  shouldCloseOnFinish: boolean;
+};
+
+const animationStates = new WeakMap<
+  HTMLDetailsElement,
+  AnimationState
+>();
+
 function readBoxSpacing(element: HTMLElement): BoxSpacing {
   const style = window.getComputedStyle(element);
 
@@ -16,11 +32,31 @@ function readBoxSpacing(element: HTMLElement): BoxSpacing {
   };
 }
 
-function applyBoxSpacing(element: HTMLElement, spacing: BoxSpacing) {
+function applyBoxSpacing(
+  element: HTMLElement,
+  spacing: BoxSpacing,
+) {
   element.style.paddingTop = `${spacing.paddingTop}px`;
   element.style.paddingRight = `${spacing.paddingRight}px`;
   element.style.paddingBottom = `${spacing.paddingBottom}px`;
   element.style.paddingLeft = `${spacing.paddingLeft}px`;
+}
+
+function readCurrentMetrics(
+  details: HTMLDetailsElement,
+): DetailsMetrics {
+  const style = window.getComputedStyle(details);
+
+  return {
+    height:
+      parseFloat(style.height) || details.offsetHeight,
+    spacing: {
+      paddingTop: parseFloat(style.paddingTop) || 0,
+      paddingRight: parseFloat(style.paddingRight) || 0,
+      paddingBottom: parseFloat(style.paddingBottom) || 0,
+      paddingLeft: parseFloat(style.paddingLeft) || 0,
+    },
+  };
 }
 
 function clearAnimatedStyles(element: HTMLElement) {
@@ -31,7 +67,30 @@ function clearAnimatedStyles(element: HTMLElement) {
   element.style.paddingLeft = "";
 }
 
-function finishAnimation(details: HTMLDetailsElement, shouldClose: boolean) {
+function clearAnimationState(details: HTMLDetailsElement) {
+  const animationState = animationStates.get(details);
+
+  if (animationState) {
+    if (animationState.rafId !== null) {
+      cancelAnimationFrame(animationState.rafId);
+    }
+
+    details.removeEventListener(
+      "transitionend",
+      animationState.onEnd,
+    );
+    animationStates.delete(details);
+  }
+
+  delete details.dataset.isAnimating;
+  delete details.dataset.animationDirection;
+}
+
+function finishAnimation(
+  details: HTMLDetailsElement,
+  shouldClose: boolean,
+) {
+  clearAnimationState(details);
   details.classList.remove("animating");
 
   if (shouldClose) {
@@ -39,7 +98,25 @@ function finishAnimation(details: HTMLDetailsElement, shouldClose: boolean) {
   }
 
   clearAnimatedStyles(details);
-  delete details.dataset.isAnimating;
+}
+
+function interruptAnimation(
+  details: HTMLDetailsElement,
+): AnimationState | null {
+  const animationState = animationStates.get(details);
+
+  if (!animationState) {
+    return null;
+  }
+
+  const currentMetrics = readCurrentMetrics(details);
+
+  clearAnimationState(details);
+  details.classList.remove("animating");
+  details.style.height = `${currentMetrics.height}px`;
+  applyBoxSpacing(details, currentMetrics.spacing);
+
+  return animationState;
 }
 
 function animateDetails(
@@ -51,32 +128,47 @@ function animateDetails(
   shouldCloseOnFinish: boolean,
 ) {
   details.dataset.isAnimating = "true";
+  details.dataset.animationDirection = shouldCloseOnFinish
+    ? "collapse"
+    : "expand";
   details.classList.add("animating");
   details.style.height = `${fromHeight}px`;
   applyBoxSpacing(details, fromSpacing);
 
   void details.offsetHeight;
 
-  requestAnimationFrame(() => {
+  const onEnd = (event: TransitionEvent) => {
+    if (
+      event.target !== details ||
+      event.propertyName !== "height"
+    ) {
+      return;
+    }
+
+    finishAnimation(details, shouldCloseOnFinish);
+  };
+
+  const rafId = requestAnimationFrame(() => {
     details.style.height = `${toHeight}px`;
     applyBoxSpacing(details, toSpacing);
   });
 
-  const onEnd = (event: TransitionEvent) => {
-    if (event.target !== details || event.propertyName !== "height") {
-      return;
-    }
-
-    details.removeEventListener("transitionend", onEnd);
-    finishAnimation(details, shouldCloseOnFinish);
-  };
-
+  animationStates.set(details, {
+    onEnd,
+    rafId,
+    shouldCloseOnFinish,
+  });
   details.addEventListener("transitionend", onEnd);
 }
 
-function expandDetails(details: HTMLDetailsElement) {
-  const collapsedSpacing = readBoxSpacing(details);
-  const collapsedHeight = details.offsetHeight;
+function expandDetails(
+  details: HTMLDetailsElement,
+  startMetrics?: DetailsMetrics,
+) {
+  const collapsedSpacing =
+    startMetrics?.spacing ?? readBoxSpacing(details);
+  const collapsedHeight =
+    startMetrics?.height ?? details.offsetHeight;
 
   details.style.height = `${collapsedHeight}px`;
   applyBoxSpacing(details, collapsedSpacing);
@@ -97,9 +189,14 @@ function expandDetails(details: HTMLDetailsElement) {
   );
 }
 
-function collapseDetails(details: HTMLDetailsElement) {
-  const expandedSpacing = readBoxSpacing(details);
-  const expandedHeight = details.offsetHeight;
+function collapseDetails(
+  details: HTMLDetailsElement,
+  startMetrics?: DetailsMetrics,
+) {
+  const expandedSpacing =
+    startMetrics?.spacing ?? readBoxSpacing(details);
+  const expandedHeight =
+    startMetrics?.height ?? details.offsetHeight;
 
   details.style.height = `${expandedHeight}px`;
   applyBoxSpacing(details, expandedSpacing);
@@ -131,7 +228,8 @@ export function enableDetailsAnimation() {
 
     if (!summary) return;
 
-    const details = summary.parentElement as HTMLDetailsElement;
+    const details =
+      summary.parentElement as HTMLDetailsElement;
 
     if (
       !details ||
@@ -141,12 +239,24 @@ export function enableDetailsAnimation() {
       return;
     }
 
+    e.preventDefault();
+
     if (details.dataset.isAnimating === "true") {
-      e.preventDefault();
+      const currentMetrics = readCurrentMetrics(details);
+      const animationState = interruptAnimation(details);
+
+      if (!animationState) {
+        return;
+      }
+
+      if (animationState.shouldCloseOnFinish) {
+        expandDetails(details, currentMetrics);
+      } else {
+        collapseDetails(details, currentMetrics);
+      }
+
       return;
     }
-
-    e.preventDefault();
 
     if (details.open) {
       collapseDetails(details);
@@ -156,3 +266,4 @@ export function enableDetailsAnimation() {
     expandDetails(details);
   });
 }
+

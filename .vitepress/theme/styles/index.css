@@ -159,7 +159,38 @@ details.custom-block.details.animating {
 }
 
 details.custom-block.details summary {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  list-style: none;
   margin: 0 !important;
+}
+
+details.custom-block.details summary::-webkit-details-marker {
+  display: none;
+}
+
+details.custom-block.details summary::before {
+  content: "";
+  flex: 0 0 auto;
+  display: block;
+  width: 0.5rem;
+  height: 0.5rem;
+  border-right: 2px solid currentColor;
+  border-bottom: 2px solid currentColor;
+  opacity: 0.75;
+  transform: translate(-1px, 0) rotate(-45deg);
+  transform-origin: 50% 50%;
+  transition: transform 0.46s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+details.custom-block.details[open] summary::before,
+details.custom-block.details.animating[data-animation-direction="expand"] summary::before {
+  transform: translate(0, -1px) rotate(45deg);
+}
+
+details.custom-block.details.animating[data-animation-direction="collapse"] summary::before {
+  transform: translate(-1px, 0) rotate(-45deg);
 }
 
 .DocSearch-Modal .titles mark,
