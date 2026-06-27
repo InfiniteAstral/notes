@@ -50,10 +50,6 @@ h5 {
   max-width: 100%;
 }
 
-.menu-text {
-  font-size: medium;
-}
-
 ::view-transition-old(*) {
   animation: none;
 }
