@@ -6,6 +6,7 @@ import CourseLink from './components/global/CourseLink.vue'
 import InlineMath from './components/global/InlineMath.vue'
 import './styles/index.css'
 import { enableDetailsAnimation } from './behaviors/enableDetailsAnimation'
+import { enableLastUpdatedEasterEgg } from './behaviors/enableLastUpdatedEasterEgg'
 import { enableLastUpdatedPunctuation } from './behaviors/enableLastUpdatedPunctuation'
 import { enableOutlineAutoScroll } from './behaviors/enableOutlineAutoScroll'
 
@@ -16,6 +17,7 @@ export default {
     app.component('CourseLink', CourseLink)
     app.component('InlineMath', InlineMath)
     enableDetailsAnimation()
+    enableLastUpdatedEasterEgg()
     enableLastUpdatedPunctuation()
     enableOutlineAutoScroll()
   }
