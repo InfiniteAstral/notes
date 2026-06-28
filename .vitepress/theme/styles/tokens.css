@@ -1,0 +1,28 @@
+:root {
+  color-scheme: light;
+  --vp-font-family-base: "Noto Sans SC", "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", "WenQuanYi Micro Hei", sans-serif;
+  --vp-font-family-mono: "JetBrains Mono", "Maple Mono NF CN", "Fira Code", "SF Mono", "Monaco", "Inconsolata", "Roboto Mono", "Source Code Pro", "Consolas", "Courier New", ui-monospace, "Menlo", "Liberation Mono", "Courier New", monospace;
+  --selection-bg: #c7d2fe;
+  --selection-color: #1e1b4b;
+  --vp-local-search-highlight-bg: var(--selection-bg);
+  --vp-local-search-highlight-text: var(--selection-color);
+  --custom-block-sticky-top: calc(var(--vp-layout-top-height, 0px) + 49px);
+}
+
+.dark {
+  color-scheme: dark;
+  --selection-bg: #6366f1;
+  --selection-color: #f8fafc;
+}
+
+@media (min-width: 960px) {
+  :root {
+    --custom-block-sticky-top: calc(var(--vp-nav-height) + 49px);
+  }
+}
+
+@media (min-width: 1280px) {
+  :root {
+    --custom-block-sticky-top: var(--vp-nav-height);
+  }
+}

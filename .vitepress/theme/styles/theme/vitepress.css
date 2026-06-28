@@ -1,0 +1,31 @@
+.VPNavBarTitle > .title {
+  font-size: 1.2em;
+  color: var(--vp-c-brand-1);
+  transition: all 0.1s ease-in-out;
+
+  &:hover {
+    color: var(--vp-c-brand-4);
+  }
+}
+
+.heading > .name {
+  max-width: 100%;
+}
+
+::view-transition-old(*) {
+  animation: none;
+}
+
+::view-transition-new(*) {
+  animation: globalDark 0.2s ease-in;
+}
+
+@keyframes globalDark {
+  from {
+    clip-path: circle(0% at var(--darkX) var(--darkY));
+  }
+
+  to {
+    clip-path: circle(120% at var(--darkX) var(--darkY));
+  }
+}
