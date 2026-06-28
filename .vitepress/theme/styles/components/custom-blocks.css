@@ -1,0 +1,183 @@
+.vp-doc .custom-block:not(.details) > .custom-block-title {
+  position: sticky;
+  top: calc(var(--custom-block-sticky-top) + var(--custom-block-title-stack-offset, 0px));
+  isolation: isolate;
+  z-index: var(--custom-block-title-z-index, 12);
+  margin: -16px -16px 12px;
+  padding: 16px 16px 10px;
+  border-radius: 8px 8px 0 0;
+  background-color: transparent;
+  text-shadow:
+    0 1px 0 color-mix(in srgb, var(--vp-c-bg) 72%, transparent),
+    0 2px 8px color-mix(in srgb, var(--vp-c-bg) 28%, transparent);
+}
+
+.vp-doc .custom-block:not(.details) > .custom-block-title::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  border-radius: inherit;
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  mask-image: linear-gradient(
+    to bottom,
+    rgb(0 0 0 / 100%) 0%,
+    rgb(0 0 0 / 100%) 34%,
+    rgb(0 0 0 / 78%) 56%,
+    rgb(0 0 0 / 40%) 76%,
+    rgb(0 0 0 / 12%) 90%,
+    rgb(0 0 0 / 0%) 100%
+  );
+  -webkit-mask-image: linear-gradient(
+    to bottom,
+    rgb(0 0 0 / 100%) 0%,
+    rgb(0 0 0 / 100%) 34%,
+    rgb(0 0 0 / 78%) 56%,
+    rgb(0 0 0 / 40%) 76%,
+    rgb(0 0 0 / 12%) 90%,
+    rgb(0 0 0 / 0%) 100%
+  );
+  pointer-events: none;
+}
+
+.vp-doc .custom-block:not(.details) > .custom-block-title[data-sticky-state="stuck"]::before {
+  inset: -8px 0 0;
+}
+
+.vp-doc .custom-block:not(.details)[data-sticky-title="nested"] > .custom-block-title {
+  position: static;
+  top: auto;
+  isolation: auto;
+  z-index: auto;
+  text-shadow: none;
+}
+
+.vp-doc .custom-block:not(.details)[data-sticky-title="nested"] > .custom-block-title::before {
+  content: none;
+}
+
+details.custom-block.details {
+  overflow: visible;
+}
+
+details.custom-block.details:not([open]),
+details.custom-block.details.animating {
+  overflow: hidden;
+  transform: translateZ(0);
+  will-change: height, padding;
+}
+
+details.custom-block.details:not([open]) {
+  padding-bottom: 6px;
+}
+
+details.custom-block.details.animating {
+  transition:
+    height 0.46s cubic-bezier(0.22, 1, 0.36, 1),
+    padding-top 0.46s cubic-bezier(0.22, 1, 0.36, 1),
+    padding-right 0.46s cubic-bezier(0.22, 1, 0.36, 1),
+    padding-bottom 0.46s cubic-bezier(0.22, 1, 0.36, 1),
+    padding-left 0.46s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+details.custom-block.details.animating[data-animation-direction="collapse"] {
+  overflow-anchor: none;
+}
+
+details.custom-block.details summary {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  list-style: none;
+  margin: -16px -16px 0 !important;
+  padding: 16px 16px 10px;
+  border-radius: 8px 8px 0 0;
+  background-color: transparent;
+}
+
+details.custom-block.details[open] > summary + * {
+  margin-top: 12px;
+}
+
+details.custom-block.details[open]:not(.animating):not([data-animation-direction="collapse"]) > summary {
+  position: sticky;
+  top: calc(var(--custom-block-sticky-top) + var(--custom-block-title-stack-offset, 0px));
+  isolation: isolate;
+  z-index: var(--custom-block-title-z-index, 12);
+  text-shadow:
+    0 1px 0 color-mix(in srgb, var(--vp-c-bg) 72%, transparent),
+    0 2px 8px color-mix(in srgb, var(--vp-c-bg) 28%, transparent);
+}
+
+details.custom-block.details[open]:not(.animating):not([data-animation-direction="collapse"]) > summary::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  border-radius: inherit;
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  mask-image: linear-gradient(
+    to bottom,
+    rgb(0 0 0 / 100%) 0%,
+    rgb(0 0 0 / 100%) 34%,
+    rgb(0 0 0 / 78%) 56%,
+    rgb(0 0 0 / 40%) 76%,
+    rgb(0 0 0 / 12%) 90%,
+    rgb(0 0 0 / 0%) 100%
+  );
+  -webkit-mask-image: linear-gradient(
+    to bottom,
+    rgb(0 0 0 / 100%) 0%,
+    rgb(0 0 0 / 100%) 34%,
+    rgb(0 0 0 / 78%) 56%,
+    rgb(0 0 0 / 40%) 76%,
+    rgb(0 0 0 / 12%) 90%,
+    rgb(0 0 0 / 0%) 100%
+  );
+  pointer-events: none;
+}
+
+details.custom-block.details[open]:not(.animating):not([data-animation-direction="collapse"]) > summary[data-sticky-state="stuck"]::after {
+  inset: -8px 0 0;
+}
+
+details.custom-block.details summary::-webkit-details-marker {
+  display: none;
+}
+
+details.custom-block.details summary::before {
+  content: "";
+  flex: 0 0 auto;
+  display: block;
+  width: 0.5rem;
+  height: 0.5rem;
+  border-right: 2px solid currentColor;
+  border-bottom: 2px solid currentColor;
+  opacity: 0.75;
+  transform: translate(-1px, 0) rotate(-45deg);
+  transform-origin: 50% 50%;
+  transition: transform 0.46s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+details.custom-block.details[open] summary::before,
+details.custom-block.details.animating[data-animation-direction="expand"] summary::before {
+  transform: translate(0, -1px) rotate(45deg);
+}
+
+details.custom-block.details[data-sticky-title="nested"] > summary {
+  position: static;
+  top: auto;
+  isolation: auto;
+  z-index: auto;
+  text-shadow: none;
+}
+
+details.custom-block.details[data-sticky-title="nested"] > summary::after {
+  content: none;
+}
+
+details.custom-block.details.animating[data-animation-direction="collapse"] summary::before {
+  transform: translate(-1px, 0) rotate(-45deg);
+}

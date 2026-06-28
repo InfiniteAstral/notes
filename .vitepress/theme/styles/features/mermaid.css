@@ -1,0 +1,49 @@
+.mermaid {
+  display: flex;
+  justify-content: center;
+}
+
+.vp-doc .mermaid {
+  overflow-x: auto;
+}
+
+.vp-doc .mermaid svg {
+  display: block;
+  height: auto;
+}
+
+.vp-doc .mermaid svg foreignObject {
+  overflow: visible;
+}
+
+.vp-doc .mermaid svg foreignObject div,
+.vp-doc .mermaid svg foreignObject span,
+.vp-doc .mermaid svg foreignObject p {
+  box-sizing: border-box;
+  height: auto !important;
+  max-height: none !important;
+  overflow: visible !important;
+  text-overflow: clip !important;
+  line-clamp: unset !important;
+  -webkit-line-clamp: unset !important;
+}
+
+.vp-doc .mermaid svg foreignObject div {
+  width: 100%;
+}
+
+.vp-doc .mermaid svg foreignObject span {
+  display: inline;
+  white-space: normal !important;
+  overflow-wrap: anywhere;
+  word-break: break-word;
+}
+
+.vp-doc .mermaid svg foreignObject p {
+  display: block;
+  margin: 0;
+  line-height: 1.5 !important;
+  white-space: normal !important;
+  overflow-wrap: anywhere;
+  word-break: break-word;
+}

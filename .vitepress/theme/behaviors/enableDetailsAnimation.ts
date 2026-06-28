@@ -67,6 +67,33 @@ function clearAnimatedStyles(element: HTMLElement) {
   element.style.paddingLeft = "";
 }
 
+function alignViewportToDetailsStart(details: HTMLDetailsElement) {
+  const summary = details.querySelector<HTMLElement>(":scope > summary");
+
+  if (!summary) {
+    return;
+  }
+
+  const detailsRect = details.getBoundingClientRect();
+  const summaryRect = summary.getBoundingClientRect();
+
+  if (detailsRect.top >= summaryRect.top - 1) {
+    return;
+  }
+
+  const targetScrollY =
+    window.scrollY + detailsRect.top - summaryRect.top;
+  const clampedTargetScrollY = Math.max(0, targetScrollY);
+  const prefersReducedMotion = window.matchMedia(
+    "(prefers-reduced-motion: reduce)",
+  ).matches;
+
+  window.scrollTo({
+    top: clampedTargetScrollY,
+    behavior: prefersReducedMotion ? "auto" : "smooth",
+  });
+}
+
 function clearAnimationState(details: HTMLDetailsElement) {
   const animationState = animationStates.get(details);
 
@@ -193,6 +220,8 @@ function collapseDetails(
   details: HTMLDetailsElement,
   startMetrics?: DetailsMetrics,
 ) {
+  alignViewportToDetailsStart(details);
+
   const expandedSpacing =
     startMetrics?.spacing ?? readBoxSpacing(details);
   const expandedHeight =
@@ -266,4 +295,3 @@ export function enableDetailsAnimation() {
     expandDetails(details);
   });
 }
-
