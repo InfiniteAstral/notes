@@ -9,6 +9,7 @@
   --selection-color: #1e1b4b;
   --vp-local-search-highlight-bg: var(--selection-bg);
   --vp-local-search-highlight-text: var(--selection-color);
+  --custom-block-sticky-top: calc(var(--vp-layout-top-height, 0px) + 49px);
 }
 
 .dark {
@@ -133,6 +134,61 @@ h5 {
   overflow-x: auto;
   overflow-y: hidden;
   padding: 0.2rem 0;
+}
+
+.vp-doc .custom-block:not(.details) > .custom-block-title {
+  position: sticky;
+  top: calc(var(--custom-block-sticky-top) + var(--custom-block-title-stack-offset, 0px));
+  isolation: isolate;
+  z-index: var(--custom-block-title-z-index, 12);
+  margin: -16px -16px 12px;
+  padding: 16px 16px 10px;
+  border-radius: 8px 8px 0 0;
+  background-color: transparent;
+  text-shadow:
+    0 1px 0 color-mix(in srgb, var(--vp-c-bg) 72%, transparent),
+    0 2px 8px color-mix(in srgb, var(--vp-c-bg) 28%, transparent);
+}
+
+.vp-doc .custom-block:not(.details) > .custom-block-title::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  border-radius: inherit;
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  mask-image: linear-gradient(
+    to bottom,
+    rgb(0 0 0 / 100%) 0%,
+    rgb(0 0 0 / 100%) 34%,
+    rgb(0 0 0 / 78%) 56%,
+    rgb(0 0 0 / 40%) 76%,
+    rgb(0 0 0 / 12%) 90%,
+    rgb(0 0 0 / 0%) 100%
+  );
+  -webkit-mask-image: linear-gradient(
+    to bottom,
+    rgb(0 0 0 / 100%) 0%,
+    rgb(0 0 0 / 100%) 34%,
+    rgb(0 0 0 / 78%) 56%,
+    rgb(0 0 0 / 40%) 76%,
+    rgb(0 0 0 / 12%) 90%,
+    rgb(0 0 0 / 0%) 100%
+  );
+  pointer-events: none;
+}
+
+.vp-doc .custom-block:not(.details)[data-sticky-title="nested"] > .custom-block-title {
+  position: static;
+  top: auto;
+  isolation: auto;
+  z-index: auto;
+  text-shadow: none;
+}
+
+.vp-doc .custom-block:not(.details)[data-sticky-title="nested"] > .custom-block-title::before {
+  content: none;
 }
 
 details.custom-block.details {
@@ -286,5 +342,17 @@ details.custom-block.details.animating[data-animation-direction="collapse"] summ
 
   .last-updated[data-easter-egg-enabled="true"]:focus-visible {
     outline: none;
+  }
+}
+
+@media (min-width: 960px) {
+  :root {
+    --custom-block-sticky-top: calc(var(--vp-nav-height) + 49px);
+  }
+}
+
+@media (min-width: 1280px) {
+  :root {
+    --custom-block-sticky-top: var(--vp-nav-height);
   }
 }

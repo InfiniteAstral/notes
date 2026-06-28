@@ -5,6 +5,7 @@ import HomeLayout from './layouts/HomeLayout.vue'
 import CourseLink from './components/global/CourseLink.vue'
 import InlineMath from './components/global/InlineMath.vue'
 import './styles/index.css'
+import { enableCustomBlockStickyTitles } from './behaviors/enableCustomBlockStickyTitles'
 import { enableDetailsAnimation } from './behaviors/enableDetailsAnimation'
 import { enableLastUpdatedEasterEgg } from './behaviors/enableLastUpdatedEasterEgg'
 import { enableLastUpdatedPunctuation } from './behaviors/enableLastUpdatedPunctuation'
@@ -16,6 +17,7 @@ export default {
   enhanceApp({ app }) {
     app.component('CourseLink', CourseLink)
     app.component('InlineMath', InlineMath)
+    enableCustomBlockStickyTitles()
     enableDetailsAnimation()
     enableLastUpdatedEasterEgg()
     enableLastUpdatedPunctuation()
