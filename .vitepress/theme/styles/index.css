@@ -192,13 +192,18 @@ h5 {
 }
 
 details.custom-block.details {
+  overflow: visible;
+}
+
+details.custom-block.details:not([open]),
+details.custom-block.details.animating {
   overflow: hidden;
   transform: translateZ(0);
   will-change: height, padding;
 }
 
 details.custom-block.details:not([open]) {
-  padding: 16px;
+  padding-bottom: 6px;
 }
 
 details.custom-block.details.animating {
@@ -215,7 +220,53 @@ details.custom-block.details summary {
   align-items: center;
   gap: 10px;
   list-style: none;
-  margin: 0 !important;
+  margin: -16px -16px 0 !important;
+  padding: 16px 16px 10px;
+  border-radius: 8px 8px 0 0;
+  background-color: transparent;
+}
+
+details.custom-block.details[open] > summary + * {
+  margin-top: 12px;
+}
+
+details.custom-block.details[open]:not(.animating):not([data-animation-direction="collapse"]) > summary {
+  position: sticky;
+  top: calc(var(--custom-block-sticky-top) + var(--custom-block-title-stack-offset, 0px));
+  isolation: isolate;
+  z-index: var(--custom-block-title-z-index, 12);
+  text-shadow:
+    0 1px 0 color-mix(in srgb, var(--vp-c-bg) 72%, transparent),
+    0 2px 8px color-mix(in srgb, var(--vp-c-bg) 28%, transparent);
+}
+
+details.custom-block.details[open]:not(.animating):not([data-animation-direction="collapse"]) > summary::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  border-radius: inherit;
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  mask-image: linear-gradient(
+    to bottom,
+    rgb(0 0 0 / 100%) 0%,
+    rgb(0 0 0 / 100%) 34%,
+    rgb(0 0 0 / 78%) 56%,
+    rgb(0 0 0 / 40%) 76%,
+    rgb(0 0 0 / 12%) 90%,
+    rgb(0 0 0 / 0%) 100%
+  );
+  -webkit-mask-image: linear-gradient(
+    to bottom,
+    rgb(0 0 0 / 100%) 0%,
+    rgb(0 0 0 / 100%) 34%,
+    rgb(0 0 0 / 78%) 56%,
+    rgb(0 0 0 / 40%) 76%,
+    rgb(0 0 0 / 12%) 90%,
+    rgb(0 0 0 / 0%) 100%
+  );
+  pointer-events: none;
 }
 
 details.custom-block.details summary::-webkit-details-marker {
@@ -239,6 +290,18 @@ details.custom-block.details summary::before {
 details.custom-block.details[open] summary::before,
 details.custom-block.details.animating[data-animation-direction="expand"] summary::before {
   transform: translate(0, -1px) rotate(45deg);
+}
+
+details.custom-block.details[data-sticky-title="nested"] > summary {
+  position: static;
+  top: auto;
+  isolation: auto;
+  z-index: auto;
+  text-shadow: none;
+}
+
+details.custom-block.details[data-sticky-title="nested"] > summary::after {
+  content: none;
 }
 
 details.custom-block.details.animating[data-animation-direction="collapse"] summary::before {

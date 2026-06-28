@@ -1,27 +1,45 @@
-const SELECTOR = '.vp-doc .custom-block:not(.details)'
-const TITLE_SELECTOR = ':scope > .custom-block-title'
+const CUSTOM_BLOCK_SELECTOR = '.vp-doc .custom-block:not(.details)'
+const DETAILS_SELECTOR = '.vp-doc details.custom-block.details'
+const STICKY_ANCESTOR_SELECTOR = '.vp-doc .custom-block'
 
-function getDirectTitle(container: Element) {
-  return container.querySelector<HTMLElement>(TITLE_SELECTOR)
+const STICKY_CONTAINERS = [
+  {
+    containerSelector: CUSTOM_BLOCK_SELECTOR,
+    titleSelector: ':scope > .custom-block-title'
+  },
+  {
+    containerSelector: DETAILS_SELECTOR,
+    titleSelector: ':scope > summary'
+  }
+] as const
+
+function getDirectTitle(container: Element, titleSelector: string) {
+  return container.querySelector<HTMLElement>(titleSelector)
+}
+
+function updateStickyMetadata(container: HTMLElement, title: HTMLElement) {
+  const ancestor = container.parentElement?.closest<HTMLElement>(STICKY_ANCESTOR_SELECTOR) ?? null
+  const stickyMode = ancestor ? 'nested' : 'root'
+
+  container.dataset.stickyTitle = stickyMode
+  title.dataset.hasStackedChild = 'false'
+  title.style.setProperty('--custom-block-title-stack-offset', '0px')
+  title.style.setProperty('--custom-block-title-z-index', '12')
 }
 
 function updateCustomBlockStickyTitles() {
-  const containers = document.querySelectorAll<HTMLElement>(SELECTOR)
+  for (const { containerSelector, titleSelector } of STICKY_CONTAINERS) {
+    const containers = document.querySelectorAll<HTMLElement>(containerSelector)
 
-  for (const container of containers) {
-    const title = getDirectTitle(container)
+    for (const container of containers) {
+      const title = getDirectTitle(container, titleSelector)
 
-    if (!title) {
-      continue
+      if (!title) {
+        continue
+      }
+
+      updateStickyMetadata(container, title)
     }
-
-    let ancestor = container.parentElement?.closest<HTMLElement>(SELECTOR) ?? null
-    const stickyMode = ancestor ? 'nested' : 'root'
-
-    container.dataset.stickyTitle = stickyMode
-    title.dataset.hasStackedChild = 'false'
-    title.style.setProperty('--custom-block-title-stack-offset', '0px')
-    title.style.setProperty('--custom-block-title-z-index', '12')
   }
 }
 
