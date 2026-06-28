@@ -219,6 +219,10 @@ details.custom-block.details.animating {
     padding-left 0.46s cubic-bezier(0.22, 1, 0.36, 1);
 }
 
+details.custom-block.details.animating[data-animation-direction="collapse"] {
+  overflow-anchor: none;
+}
+
 details.custom-block.details summary {
   display: flex;
   align-items: center;
