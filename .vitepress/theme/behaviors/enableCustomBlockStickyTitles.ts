@@ -23,8 +23,26 @@ function updateStickyMetadata(container: HTMLElement, title: HTMLElement) {
 
   container.dataset.stickyTitle = stickyMode
   title.dataset.hasStackedChild = 'false'
+  title.dataset.stickyState = 'idle'
   title.style.setProperty('--custom-block-title-stack-offset', '0px')
   title.style.setProperty('--custom-block-title-z-index', '12')
+}
+
+function updateStickyState(container: HTMLElement, title: HTMLElement) {
+  const titleStyle = window.getComputedStyle(title)
+
+  if (titleStyle.position !== 'sticky') {
+    title.dataset.stickyState = 'idle'
+    return
+  }
+
+  const targetTop = parseFloat(titleStyle.top) || 0
+  const titleRect = title.getBoundingClientRect()
+  const containerRect = container.getBoundingClientRect()
+  const isPinnedToTop = Math.abs(titleRect.top - targetTop) <= 1
+  const canRemainPinned = containerRect.bottom - titleRect.height > targetTop + 1
+
+  title.dataset.stickyState = isPinnedToTop && canRemainPinned ? 'stuck' : 'idle'
 }
 
 function updateCustomBlockStickyTitles() {
@@ -39,6 +57,7 @@ function updateCustomBlockStickyTitles() {
       }
 
       updateStickyMetadata(container, title)
+      updateStickyState(container, title)
     }
   }
 }
@@ -71,6 +90,7 @@ export function enableCustomBlockStickyTitles() {
       childList: true
     })
 
+    window.addEventListener('scroll', scheduleUpdate, { passive: true })
     window.addEventListener('resize', scheduleUpdate)
   }
 

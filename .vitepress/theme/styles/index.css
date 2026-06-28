@@ -179,6 +179,10 @@ h5 {
   pointer-events: none;
 }
 
+.vp-doc .custom-block:not(.details) > .custom-block-title[data-sticky-state="stuck"]::before {
+  inset: -8px 0 0;
+}
+
 .vp-doc .custom-block:not(.details)[data-sticky-title="nested"] > .custom-block-title {
   position: static;
   top: auto;
@@ -267,6 +271,10 @@ details.custom-block.details[open]:not(.animating):not([data-animation-direction
     rgb(0 0 0 / 0%) 100%
   );
   pointer-events: none;
+}
+
+details.custom-block.details[open]:not(.animating):not([data-animation-direction="collapse"]) > summary[data-sticky-state="stuck"]::after {
+  inset: -8px 0 0;
 }
 
 details.custom-block.details summary::-webkit-details-marker {
