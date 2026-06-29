@@ -2,6 +2,23 @@
   filter: brightness(0.8);
 }
 
+:root {
+  --vp-table-row-bg: rgba(255, 255, 255, 0.5);
+  /*
+   * Both row layers participate in blending. On top of #fff they still render
+   * exactly as the VitePress defaults: #fff and #f6f6f7.
+   */
+  --vp-table-row-alt-bg: rgba(237, 237, 239, 0.5);
+}
+
+.dark {
+  /*
+   * On top of #1b1b1f these still render exactly as #1b1b1f and #202127.
+   */
+  --vp-table-row-bg: rgba(27, 27, 31, 0.5);
+  --vp-table-row-alt-bg: rgba(37, 39, 47, 0.5);
+}
+
 .vp-doc table {
   display: block;
   width: fit-content;
@@ -9,6 +26,18 @@
   margin-left: auto;
   margin-right: auto;
   overflow-x: auto;
+}
+
+.vp-doc tr {
+  background-color: var(--vp-table-row-bg);
+}
+
+.vp-doc tr:nth-child(2n) {
+  background-color: var(--vp-table-row-alt-bg);
+}
+
+.vp-doc th {
+  background-color: var(--vp-table-row-alt-bg);
 }
 
 .vp-doc .katex-display {
