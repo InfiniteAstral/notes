@@ -1,3 +1,19 @@
+:root {
+  --custom-block-sticky-blur-mask-image: none;
+}
+
+:root[data-sticky-title-blur="linear-gradient"] {
+  --custom-block-sticky-blur-mask-image: linear-gradient(
+    to bottom,
+    rgb(0 0 0 / 100%) 0%,
+    rgb(0 0 0 / 100%) 34%,
+    rgb(0 0 0 / 78%) 56%,
+    rgb(0 0 0 / 40%) 76%,
+    rgb(0 0 0 / 12%) 90%,
+    rgb(0 0 0 / 0%) 100%
+  );  
+}  
+
 .vp-doc .custom-block:not(.details) > .custom-block-title {
   position: sticky;
   top: calc(var(--custom-block-sticky-top) + var(--custom-block-title-stack-offset, 0px));
@@ -18,31 +34,23 @@
   inset: 0;
   z-index: -1;
   border-radius: inherit;
-  backdrop-filter: blur(12px);
-  -webkit-backdrop-filter: blur(12px);
-  mask-image: linear-gradient(
-    to bottom,
-    rgb(0 0 0 / 100%) 0%,
-    rgb(0 0 0 / 100%) 34%,
-    rgb(0 0 0 / 78%) 56%,
-    rgb(0 0 0 / 40%) 76%,
-    rgb(0 0 0 / 12%) 90%,
-    rgb(0 0 0 / 0%) 100%
-  );
-  -webkit-mask-image: linear-gradient(
-    to bottom,
-    rgb(0 0 0 / 100%) 0%,
-    rgb(0 0 0 / 100%) 34%,
-    rgb(0 0 0 / 78%) 56%,
-    rgb(0 0 0 / 40%) 76%,
-    rgb(0 0 0 / 12%) 90%,
-    rgb(0 0 0 / 0%) 100%
-  );
+  border-bottom: 1px solid transparent;
+  backdrop-filter: blur(5px);
+  -webkit-backdrop-filter: blur(5px);
+  mask-image: var(--custom-block-sticky-blur-mask-image);
+  -webkit-mask-image: var(--custom-block-sticky-blur-mask-image);
   pointer-events: none;
+  transition: border-bottom-color 0.18s ease;
+}
+
+.vp-doc .custom-block:not(.details)[data-sticky-blur="solid"] > .custom-block-title::before {
+  mask-image: none;
+  -webkit-mask-image: none;
 }
 
 .vp-doc .custom-block:not(.details) > .custom-block-title[data-sticky-state="stuck"]::before {
   inset: -8px 0 0;
+  border-bottom-color: color-mix(in srgb, var(--vp-c-border) 58%, transparent);
 }
 
 .vp-doc .custom-block:not(.details)[data-sticky-title="nested"] > .custom-block-title {
@@ -116,31 +124,23 @@ details.custom-block.details[open]:not(.animating):not([data-animation-direction
   inset: 0;
   z-index: -1;
   border-radius: inherit;
-  backdrop-filter: blur(12px);
-  -webkit-backdrop-filter: blur(12px);
-  mask-image: linear-gradient(
-    to bottom,
-    rgb(0 0 0 / 100%) 0%,
-    rgb(0 0 0 / 100%) 34%,
-    rgb(0 0 0 / 78%) 56%,
-    rgb(0 0 0 / 40%) 76%,
-    rgb(0 0 0 / 12%) 90%,
-    rgb(0 0 0 / 0%) 100%
-  );
-  -webkit-mask-image: linear-gradient(
-    to bottom,
-    rgb(0 0 0 / 100%) 0%,
-    rgb(0 0 0 / 100%) 34%,
-    rgb(0 0 0 / 78%) 56%,
-    rgb(0 0 0 / 40%) 76%,
-    rgb(0 0 0 / 12%) 90%,
-    rgb(0 0 0 / 0%) 100%
-  );
+  border-bottom: 1px solid transparent;
+  backdrop-filter: blur(5px);
+  -webkit-backdrop-filter: blur(5px);
+  mask-image: var(--custom-block-sticky-blur-mask-image);
+  -webkit-mask-image: var(--custom-block-sticky-blur-mask-image);
   pointer-events: none;
+  transition: border-bottom-color 0.18s ease;
+}
+
+details.custom-block.details[data-sticky-blur="solid"][open]:not(.animating):not([data-animation-direction="collapse"]) > summary::after {
+  mask-image: none;
+  -webkit-mask-image: none;
 }
 
 details.custom-block.details[open]:not(.animating):not([data-animation-direction="collapse"]) > summary[data-sticky-state="stuck"]::after {
   inset: -8px 0 0;
+  border-bottom-color: color-mix(in srgb, var(--vp-c-border) 58%, transparent);
 }
 
 details.custom-block.details summary::-webkit-details-marker {
@@ -174,7 +174,19 @@ details.custom-block.details[data-sticky-title="nested"] > summary {
   text-shadow: none;
 }
 
+details.custom-block.details[data-sticky-title="nested"][open]:not(.animating):not([data-animation-direction="collapse"]) > summary {
+  position: static;
+  top: auto;
+  isolation: auto;
+  z-index: auto;
+  text-shadow: none;
+}
+
 details.custom-block.details[data-sticky-title="nested"] > summary::after {
+  content: none;
+}
+
+details.custom-block.details[data-sticky-title="nested"][open]:not(.animating):not([data-animation-direction="collapse"]) > summary::after {
   content: none;
 }
 
