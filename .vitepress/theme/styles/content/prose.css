@@ -46,6 +46,10 @@
   padding: 0.2rem 0;
 }
 
+.vp-doc :is(h1, h2, h3, h4, h5, h6) {
+  text-shadow: 2px 2px 0 color-mix(in srgb, var(--vp-c-brand-1) 24%, transparent);
+}
+
 /* Improve Chinese typography for article content without affecting nav or cards. */
 .vp-doc {
   line-break: strict;
