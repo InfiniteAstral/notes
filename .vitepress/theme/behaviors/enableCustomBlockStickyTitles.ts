@@ -1,6 +1,8 @@
-const CUSTOM_BLOCK_SELECTOR = '.vp-doc .custom-block:not(.details)'
-const DETAILS_SELECTOR = '.vp-doc details.custom-block.details'
-const STICKY_ANCESTOR_SELECTOR = '.vp-doc .custom-block'
+const DOC_CONTENT_SELECTOR = '.VPDoc .vp-doc'
+const LOCAL_SEARCH_SELECTOR = '.VPLocalSearchBox, .DocSearch-Modal'
+const CUSTOM_BLOCK_SELECTOR = `${DOC_CONTENT_SELECTOR} .custom-block:not(.details)`
+const DETAILS_SELECTOR = `${DOC_CONTENT_SELECTOR} details.custom-block.details`
+const STICKY_ANCESTOR_SELECTOR = `${DOC_CONTENT_SELECTOR} .custom-block`
 
 const STICKY_CONTAINERS = [
   {
@@ -107,6 +109,10 @@ function updateStickyState(container: HTMLElement, title: HTMLElement) {
 }
 
 function updateCustomBlockStickyTitles() {
+  if (document.querySelector(LOCAL_SEARCH_SELECTOR)) {
+    return
+  }
+
   const entries = collectStickyEntries()
   const entryMap = new WeakMap<HTMLElement, StickyEntry>()
 

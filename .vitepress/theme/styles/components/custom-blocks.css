@@ -35,7 +35,7 @@
   --custom-block-sticky-border-color: color-mix(in srgb, var(--vp-custom-block-details-bg) 76%, var(--vp-c-text-2) 24%);
 }
 
-.vp-doc .custom-block:not(.details) > .custom-block-title {
+.VPDoc .vp-doc .custom-block:not(.details) > .custom-block-title {
   position: sticky;
   top: calc(var(--custom-block-sticky-top) + var(--custom-block-title-stack-offset, 0px));
   isolation: isolate;
@@ -49,47 +49,50 @@
     0 2px 8px color-mix(in srgb, var(--vp-c-bg) 28%, transparent); */
 }
 
-.vp-doc .custom-block:not(.details) > .custom-block-title::before {
+.VPDoc .vp-doc .custom-block:not(.details) > .custom-block-title::before {
   content: "";
   position: absolute;
   inset: 0;
   z-index: -1;
   border-radius: inherit;
   border-bottom: 1px solid transparent;
-  backdrop-filter: blur(5px);
-  -webkit-backdrop-filter: blur(5px);
   mask-image: var(--custom-block-sticky-blur-mask-image);
   -webkit-mask-image: var(--custom-block-sticky-blur-mask-image);
   pointer-events: none;
-  transition: border-bottom-color 0.18s ease;
+  transition:
+    border-bottom-color 0.18s ease,
+    /* backdrop-filter 0.18s ease, */
+    /* -webkit-backdrop-filter 0.18s ease; */
 }
 
-.vp-doc .custom-block:not(.details)[data-sticky-blur="solid"] > .custom-block-title::before {
+.VPDoc .vp-doc .custom-block:not(.details)[data-sticky-blur="solid"] > .custom-block-title::before {
   mask-image: none;
   -webkit-mask-image: none;
 }
 
-.vp-doc .custom-block:not(.details) > .custom-block-title[data-sticky-state="stuck"]::before {
+.VPDoc .vp-doc .custom-block:not(.details) > .custom-block-title[data-sticky-state="stuck"]::before {
   inset: -8px 0 0;
   border-bottom-color: var(--custom-block-sticky-border-color);
+  backdrop-filter: blur(5px);
+  -webkit-backdrop-filter: blur(5px);
 }
 
-details.custom-block.details {
+.VPDoc .vp-doc details.custom-block.details {
   overflow: visible;
 }
 
-details.custom-block.details:not([open]),
-details.custom-block.details.animating {
+.VPDoc .vp-doc details.custom-block.details:not([open]),
+.VPDoc .vp-doc details.custom-block.details.animating {
   overflow: hidden;
   transform: translateZ(0);
   will-change: height, padding;
 }
 
-details.custom-block.details:not([open]) {
+.VPDoc .vp-doc details.custom-block.details:not([open]) {
   padding-bottom: 6px;
 }
 
-details.custom-block.details.animating {
+.VPDoc .vp-doc details.custom-block.details.animating {
   transition:
     height 0.46s cubic-bezier(0.22, 1, 0.36, 1),
     padding-top 0.46s cubic-bezier(0.22, 1, 0.36, 1),
@@ -98,11 +101,11 @@ details.custom-block.details.animating {
     padding-left 0.46s cubic-bezier(0.22, 1, 0.36, 1);
 }
 
-details.custom-block.details.animating[data-animation-direction="collapse"] {
+.VPDoc .vp-doc details.custom-block.details.animating[data-animation-direction="collapse"] {
   overflow-anchor: none;
 }
 
-details.custom-block.details summary {
+.VPDoc .vp-doc details.custom-block.details summary {
   display: flex;
   align-items: center;
   gap: 10px;
@@ -113,11 +116,11 @@ details.custom-block.details summary {
   background-color: transparent;
 }
 
-details.custom-block.details[open] > summary + * {
+.VPDoc .vp-doc details.custom-block.details[open] > summary + * {
   margin-top: 12px;
 }
 
-details.custom-block.details[open]:not(.animating):not([data-animation-direction="collapse"]) > summary {
+.VPDoc .vp-doc details.custom-block.details[open]:not(.animating):not([data-animation-direction="collapse"]) > summary {
   position: sticky;
   top: calc(var(--custom-block-sticky-top) + var(--custom-block-title-stack-offset, 0px));
   isolation: isolate;
@@ -127,36 +130,39 @@ details.custom-block.details[open]:not(.animating):not([data-animation-direction
     0 2px 8px color-mix(in srgb, var(--vp-c-bg) 28%, transparent); */
 }
 
-details.custom-block.details[open]:not(.animating):not([data-animation-direction="collapse"]) > summary::after {
+.VPDoc .vp-doc details.custom-block.details[open]:not(.animating):not([data-animation-direction="collapse"]) > summary::after {
   content: "";
   position: absolute;
   inset: 0;
   z-index: -1;
   border-radius: inherit;
   border-bottom: 1px solid transparent;
-  backdrop-filter: blur(5px);
-  -webkit-backdrop-filter: blur(5px);
   mask-image: var(--custom-block-sticky-blur-mask-image);
   -webkit-mask-image: var(--custom-block-sticky-blur-mask-image);
   pointer-events: none;
-  transition: border-bottom-color 0.18s ease;
+  transition:
+    border-bottom-color 0.18s ease,
+    /* backdrop-filter 0.18s ease, */
+    /* -webkit-backdrop-filter 0.18s ease; */
 }
 
-details.custom-block.details[data-sticky-blur="solid"][open]:not(.animating):not([data-animation-direction="collapse"]) > summary::after {
+.VPDoc .vp-doc details.custom-block.details[data-sticky-blur="solid"][open]:not(.animating):not([data-animation-direction="collapse"]) > summary::after {
   mask-image: none;
   -webkit-mask-image: none;
 }
 
-details.custom-block.details[open]:not(.animating):not([data-animation-direction="collapse"]) > summary[data-sticky-state="stuck"]::after {
+.VPDoc .vp-doc details.custom-block.details[open]:not(.animating):not([data-animation-direction="collapse"]) > summary[data-sticky-state="stuck"]::after {
   inset: -8px 0 0;
   border-bottom-color: var(--custom-block-sticky-border-color);
+  backdrop-filter: blur(5px);
+  -webkit-backdrop-filter: blur(5px);
 }
 
-details.custom-block.details summary::-webkit-details-marker {
+.VPDoc .vp-doc details.custom-block.details summary::-webkit-details-marker {
   display: none;
 }
 
-details.custom-block.details summary::before {
+.VPDoc .vp-doc details.custom-block.details summary::before {
   content: "";
   flex: 0 0 auto;
   display: block;
@@ -170,11 +176,11 @@ details.custom-block.details summary::before {
   transition: transform 0.46s cubic-bezier(0.22, 1, 0.36, 1);
 }
 
-details.custom-block.details[open] summary::before,
-details.custom-block.details.animating[data-animation-direction="expand"] summary::before {
+.VPDoc .vp-doc details.custom-block.details[open] summary::before,
+.VPDoc .vp-doc details.custom-block.details.animating[data-animation-direction="expand"] summary::before {
   transform: translate(0, -1px) rotate(45deg);
 }
 
-details.custom-block.details.animating[data-animation-direction="collapse"] summary::before {
+.VPDoc .vp-doc details.custom-block.details.animating[data-animation-direction="collapse"] summary::before {
   transform: translate(-1px, 0) rotate(-45deg);
 }
