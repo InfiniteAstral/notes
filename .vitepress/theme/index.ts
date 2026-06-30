@@ -9,6 +9,7 @@ import { enableCustomBlockStickyTitles } from './behaviors/enableCustomBlockStic
 import { enableDetailsAnimation } from './behaviors/enableDetailsAnimation'
 import { enableLastUpdatedEasterEgg } from './behaviors/enableLastUpdatedEasterEgg'
 import { enableLastUpdatedPunctuation } from './behaviors/enableLastUpdatedPunctuation'
+import { enableNotoSansScFallback } from './behaviors/enableNotoSansScFallback'
 import { enableOutlineAutoScroll } from './behaviors/enableOutlineAutoScroll'
 
 export default {
@@ -17,6 +18,7 @@ export default {
   enhanceApp({ app }) {
     app.component('CourseLink', CourseLink)
     app.component('InlineMath', InlineMath)
+    enableNotoSansScFallback()
     enableCustomBlockStickyTitles()
     enableDetailsAnimation()
     enableLastUpdatedEasterEgg()

@@ -45,3 +45,35 @@
   overflow-y: hidden;
   padding: 0.2rem 0;
 }
+
+/* Improve Chinese typography for article content without affecting nav or cards. */
+.vp-doc {
+  line-break: strict;
+  word-break: normal;
+  overflow-wrap: break-word;
+  text-wrap: pretty;
+}
+
+.vp-doc :is(p, li, blockquote, figcaption, td, th) {
+  line-break: strict;
+  hanging-punctuation: allow-end last;
+}
+
+@supports (word-break: auto-phrase) {
+  .vp-doc {
+    word-break: auto-phrase;
+  }
+}
+
+@supports (text-autospace: normal) {
+  .vp-doc {
+    text-autospace: normal;
+  }
+}
+
+@media (min-width: 768px) {
+  .vp-doc :is(p, li, blockquote) {
+    text-align: justify;
+    text-justify: inter-character;
+  }
+}
