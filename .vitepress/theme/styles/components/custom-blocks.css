@@ -1,5 +1,6 @@
 :root {
   --custom-block-sticky-blur-mask-image: none;
+  --custom-block-sticky-border-color: color-mix(in srgb, var(--vp-c-border) 58%, transparent);
 }
 
 :root[data-sticky-title-blur="linear-gradient"] {
@@ -14,6 +15,26 @@
   );  
 }  
 
+.vp-doc .custom-block.info {
+  --custom-block-sticky-border-color: color-mix(in srgb, var(--vp-custom-block-info-bg) 76%, var(--vp-c-text-2) 24%);
+}
+
+.vp-doc .custom-block.tip {
+  --custom-block-sticky-border-color: color-mix(in srgb, var(--vp-custom-block-tip-bg) 76%, var(--vp-c-text-2) 24%);
+}
+
+.vp-doc .custom-block.warning {
+  --custom-block-sticky-border-color: color-mix(in srgb, var(--vp-custom-block-warning-bg) 76%, var(--vp-c-text-2) 24%);
+}
+
+.vp-doc .custom-block.danger {
+  --custom-block-sticky-border-color: color-mix(in srgb, var(--vp-custom-block-danger-bg) 76%, var(--vp-c-text-2) 24%);
+}
+
+.vp-doc .custom-block.details {
+  --custom-block-sticky-border-color: color-mix(in srgb, var(--vp-custom-block-details-bg) 76%, var(--vp-c-text-2) 24%);
+}
+
 .vp-doc .custom-block:not(.details) > .custom-block-title {
   position: sticky;
   top: calc(var(--custom-block-sticky-top) + var(--custom-block-title-stack-offset, 0px));
@@ -23,9 +44,9 @@
   padding: 16px 16px 10px;
   border-radius: 8px 8px 0 0;
   background-color: transparent;
-  text-shadow:
+  /* text-shadow:
     0 1px 0 color-mix(in srgb, var(--vp-c-bg) 72%, transparent),
-    0 2px 8px color-mix(in srgb, var(--vp-c-bg) 28%, transparent);
+    0 2px 8px color-mix(in srgb, var(--vp-c-bg) 28%, transparent); */
 }
 
 .vp-doc .custom-block:not(.details) > .custom-block-title::before {
@@ -50,19 +71,7 @@
 
 .vp-doc .custom-block:not(.details) > .custom-block-title[data-sticky-state="stuck"]::before {
   inset: -8px 0 0;
-  border-bottom-color: color-mix(in srgb, var(--vp-c-border) 58%, transparent);
-}
-
-.vp-doc .custom-block:not(.details)[data-sticky-title="nested"] > .custom-block-title {
-  position: static;
-  top: auto;
-  isolation: auto;
-  z-index: auto;
-  text-shadow: none;
-}
-
-.vp-doc .custom-block:not(.details)[data-sticky-title="nested"] > .custom-block-title::before {
-  content: none;
+  border-bottom-color: var(--custom-block-sticky-border-color);
 }
 
 details.custom-block.details {
@@ -113,9 +122,9 @@ details.custom-block.details[open]:not(.animating):not([data-animation-direction
   top: calc(var(--custom-block-sticky-top) + var(--custom-block-title-stack-offset, 0px));
   isolation: isolate;
   z-index: var(--custom-block-title-z-index, 12);
-  text-shadow:
+  /* text-shadow:
     0 1px 0 color-mix(in srgb, var(--vp-c-bg) 72%, transparent),
-    0 2px 8px color-mix(in srgb, var(--vp-c-bg) 28%, transparent);
+    0 2px 8px color-mix(in srgb, var(--vp-c-bg) 28%, transparent); */
 }
 
 details.custom-block.details[open]:not(.animating):not([data-animation-direction="collapse"]) > summary::after {
@@ -140,7 +149,7 @@ details.custom-block.details[data-sticky-blur="solid"][open]:not(.animating):not
 
 details.custom-block.details[open]:not(.animating):not([data-animation-direction="collapse"]) > summary[data-sticky-state="stuck"]::after {
   inset: -8px 0 0;
-  border-bottom-color: color-mix(in srgb, var(--vp-c-border) 58%, transparent);
+  border-bottom-color: var(--custom-block-sticky-border-color);
 }
 
 details.custom-block.details summary::-webkit-details-marker {
@@ -164,30 +173,6 @@ details.custom-block.details summary::before {
 details.custom-block.details[open] summary::before,
 details.custom-block.details.animating[data-animation-direction="expand"] summary::before {
   transform: translate(0, -1px) rotate(45deg);
-}
-
-details.custom-block.details[data-sticky-title="nested"] > summary {
-  position: static;
-  top: auto;
-  isolation: auto;
-  z-index: auto;
-  text-shadow: none;
-}
-
-details.custom-block.details[data-sticky-title="nested"][open]:not(.animating):not([data-animation-direction="collapse"]) > summary {
-  position: static;
-  top: auto;
-  isolation: auto;
-  z-index: auto;
-  text-shadow: none;
-}
-
-details.custom-block.details[data-sticky-title="nested"] > summary::after {
-  content: none;
-}
-
-details.custom-block.details[data-sticky-title="nested"][open]:not(.animating):not([data-animation-direction="collapse"]) > summary::after {
-  content: none;
 }
 
 details.custom-block.details.animating[data-animation-direction="collapse"] summary::before {
