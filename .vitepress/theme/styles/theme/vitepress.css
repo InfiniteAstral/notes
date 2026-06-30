@@ -12,6 +12,33 @@
   max-width: 100%;
 }
 
+.VPSidebar {
+  overflow-y: auto;
+  scrollbar-width: thin;
+  scrollbar-color: transparent transparent;
+}
+
+.VPSidebar:hover {
+  scrollbar-color: color-mix(in srgb, var(--vp-c-text-3) 44%, transparent) transparent;
+}
+
+.VPSidebar::-webkit-scrollbar {
+  width: 8px;
+}
+
+.VPSidebar::-webkit-scrollbar-thumb {
+  background: transparent;
+  border-radius: 999px;
+}
+
+.VPSidebar:hover::-webkit-scrollbar-thumb {
+  background: color-mix(in srgb, var(--vp-c-text-3) 44%, transparent);
+}
+
+.VPSidebar::-webkit-scrollbar-track {
+  background: transparent;
+}
+
 ::view-transition-old(*) {
   animation: none;
 }
