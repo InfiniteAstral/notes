@@ -39,6 +39,122 @@
   background: transparent;
 }
 
+@media (min-width: 960px) and (max-width: 1279px) {
+  .VPNavBar:not(.home) {
+    background-color: var(--vp-nav-bg-color) !important;
+  }
+
+  .VPNavBar.has-sidebar .wrapper {
+    padding: 0 32px !important;
+  }
+
+  .VPNavBar.has-sidebar .title {
+    position: static !important;
+    padding: 0 !important;
+    width: auto !important;
+    background-color: var(--vp-nav-bg-color) !important;
+  }
+
+  .VPNavBar.has-sidebar .content,
+  .VPNavBar.has-sidebar .divider {
+    padding-left: 0 !important;
+  }
+
+  .VPNavBar.has-sidebar .content {
+    padding-right: 0 !important;
+  }
+
+  .VPNavBar .content-body {
+    background-color: var(--vp-nav-bg-color) !important;
+  }
+
+  .VPNavBar .hamburger,
+  .VPNavBar .VPNavBarHamburger,
+  .VPNavScreen {
+    display: none !important;
+  }
+
+  .VPNavBarTitle.has-sidebar .title {
+    border-bottom-color: transparent !important;
+  }
+
+  .VPLocalNav.has-sidebar {
+    padding-left: 0 !important;
+  }
+
+  .VPLocalNav .menu {
+    display: flex !important;
+  }
+
+  .VPLocalNav .container {
+    justify-content: flex-start;
+    padding-left: 0;
+  }
+
+  .VPLocalNav .VPLocalNavOutlineDropdown > button {
+    display: none !important;
+  }
+
+  .VPLocalNav .VPLocalNavOutlineDropdown .items {
+    right: 32px;
+    left: auto;
+  }
+
+  .VPContent.has-sidebar {
+    margin: var(--vp-layout-top-height, 0px) 0 0 !important;
+    padding-left: 0 !important;
+    padding-right: 0 !important;
+  }
+
+  .VPSidebar {
+    padding-top: 32px !important;
+    width: calc(100vw - 64px) !important;
+    max-width: 320px !important;
+    z-index: var(--vp-z-index-sidebar) !important;
+    opacity: 0 !important;
+    visibility: hidden !important;
+    box-shadow: var(--vp-c-shadow-3) !important;
+    transform: translateX(-100%) !important;
+  }
+
+  .VPBackdrop {
+    z-index: calc(var(--vp-z-index-sidebar) - 1) !important;
+    background: color-mix(in srgb, var(--vp-c-text-1) 14%, transparent) !important;
+  }
+
+  .dark .VPSidebar {
+    box-shadow: var(--vp-shadow-1) !important;
+  }
+
+  .VPSidebar.open {
+    opacity: 1 !important;
+    visibility: visible !important;
+    transform: translateX(0) !important;
+  }
+
+  .VPSidebar .curtain {
+    position: static !important;
+    top: auto !important;
+    margin: 0 !important;
+    height: 0 !important;
+  }
+
+  .VPDoc .container {
+    display: flex;
+    justify-content: center;
+  }
+
+  .VPDoc .aside {
+    display: block;
+  }
+
+  .VPDoc .content {
+    order: 1;
+    margin: 0;
+    min-width: 640px;
+  }
+}
+
 ::view-transition-old(*) {
   animation: none;
 }

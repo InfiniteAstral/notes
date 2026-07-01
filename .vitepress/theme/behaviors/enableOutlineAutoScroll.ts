@@ -1,6 +1,6 @@
 import { getScrollOffset } from 'vitepress'
 
-const DESKTOP_MIN_WIDTH = 1280
+const DESKTOP_MIN_WIDTH = 960
 const TARGET_RATIO = 1 / 3
 const TOP_TRIGGER_RATIO = 0.24
 const BOTTOM_TRIGGER_RATIO = 0.46
