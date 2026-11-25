@@ -2,6 +2,7 @@
 import DefaultTheme from 'vitepress/theme'
 import ArticleMeta from '../components/global/ArticleMeta.vue'
 import HomeContent from '../components/home/HomeContent.vue'
+import TopProgressBar from '../components/global/TopProgressBar.vue'
 import { useData } from 'vitepress'
 import { setupAppearanceToggle } from '../composables/useAppearanceToggle'
 
@@ -12,6 +13,9 @@ setupAppearanceToggle(isDark)
 
 <template>
   <Layout>
+    <template #layout-top>
+      <TopProgressBar />
+    </template>
     <template #doc-before>
       <ArticleMeta />
     </template>
